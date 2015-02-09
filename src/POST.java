@@ -24,6 +24,7 @@ public class POST {
      */
     public static void main(String[] args) {
         System.out.println("Hello POST!");
+        System.out.println("Hello POST!");
     }
     
     /**

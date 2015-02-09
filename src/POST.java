@@ -25,6 +25,7 @@ public class POST {
      */
     public static void main(String[] args) throws FileNotFoundException {
         System.out.println("Hello POST!");
+        System.out.println("Hello POST!");
         
         TransactionReader tr = new TransactionReader(catalog,TRANSACTIONS_FILE);
         

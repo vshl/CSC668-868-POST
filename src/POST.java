@@ -3,6 +3,7 @@
  * and open the template in the editor.
  */
 
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,8 +23,17 @@ public class POST {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws FileNotFoundException {
         System.out.println("Hello POST!");
+        
+        TransactionReader tr = new TransactionReader(catalog,TRANSACTIONS_FILE);
+        
+        Sale s;
+        while(tr.hasNext())
+        {
+            s = new Sale(tr.getN)
+        }    
+        
     }
     
     /**

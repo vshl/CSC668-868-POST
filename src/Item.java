@@ -8,5 +8,12 @@
  * @author ryaneshleman
  */
 public class Item {
+    ProductSpecification productSpecs;
+    
+    
+    public Item(ProductSpecification productSpecs)
+    {
+        this.productSpecs = productSpecs;
+    }        
     
 }

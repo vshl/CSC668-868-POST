@@ -3,6 +3,7 @@
  * and open the template in the editor.
  */
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -10,22 +11,28 @@ import java.util.List;
  * @author ryaneshleman
  */
 public class Sale {
+    private String custName;
     private double  amountDue = 0;
     private boolean isComplete = false;
     private int     numItems = 0;
     
-    private Catalog catalog;
+    ArrayList<LineItem> lineItems = new ArrayList<LineItem>();
     
-    
-    public Sale(Catalog catalog)
+
+    public Sale()
     {
-        this.catalog = catalog;
+        //this.catalog = catalog;
         //TODO
     }        
     
-    public boolean initiateSale(String custName, List<Integer> upcList)
+    public boolean initiateSale(String custName, List<LineItem> lineItems)
     {
-       throw new UnsupportedOperationException("Not yet implemented");
+       this.custName = custName;
+       for(LineItem li : lineItems)
+       {
+           amountDue += li.getQuantity() * li.getItemUnitCost();
+       }
+       return true;
     }
     
     public ProductSpecification addItem(int upc)
@@ -47,6 +54,7 @@ public class Sale {
     {
         throw new UnsupportedOperationException("Not yet implemented");
     }
+
 
 
 }

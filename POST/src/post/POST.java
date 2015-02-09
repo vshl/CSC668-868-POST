@@ -12,7 +12,7 @@ import java.util.List;
  * @author ryaneshleman
  */
 public class POST {
-    private final String PRODUCT_DESC_FILE = "./products.txt";
+    private final String PRODUCT_SPEC_FILE = "./products.txt";
     private final String TRANSACTIONS_FILE = "./transactions.txt";
     private final String SALES_LOG_FILE = "./sales_log.txt";
     
@@ -32,7 +32,7 @@ public class POST {
      */
     public boolean init()
     {
-        //TODO
+        catalog = new Catalog(PRODUCT_SPEC_FILE);
     }
     
     
@@ -46,7 +46,7 @@ public class POST {
      * @param itemDesc
      * @return 
      */
-    public ItemDescription addToCatalog(ItemDescription itemDesc)
+    public ProductSpecification addToCatalog(ProductSpecification itemDesc)
     {
         //TODO
     }
@@ -56,7 +56,7 @@ public class POST {
      * @param upc
      * @return 
      */
-    public ItemDescription removeFromCatalog(int upc)
+    public ProductSpecification removeFromCatalog(int upc)
     {
         //TODO
     }  

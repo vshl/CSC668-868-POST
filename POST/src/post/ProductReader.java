@@ -8,6 +8,10 @@ package post;
  *
  * @author ryaneshleman
  */
-public class ItemDescription {
+class ProductReader {
+
+    boolean hasNext() {
+        throw new UnsupportedOperationException("Not yet implemented");
+    }
     
 }

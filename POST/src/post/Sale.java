@@ -29,7 +29,7 @@ public class Sale {
         //TODO
     }
     
-    public ItemDescription addItem(int upc)
+    public ProductSpecification addItem(int upc)
     {
         //TODO
     }

@@ -10,7 +10,15 @@ package post;
  */
 class ProductReader {
 
+    ProductReader(String PRODUCT_SPEC_FILE) {
+        throw new UnsupportedOperationException("Not yet implemented");
+    }
+
     boolean hasNext() {
+        throw new UnsupportedOperationException("Not yet implemented");
+    }
+
+    ProductSpecification getNextProduct() {
         throw new UnsupportedOperationException("Not yet implemented");
     }
     

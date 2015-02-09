@@ -13,6 +13,14 @@ public class ProductSpecification {
     private String description;
     private double price;
 
+    
+    public ProductSpecification(int upc, String description, double price)
+    {
+        this.upc = upc;
+        this.description = description;
+        this.price = price;
+    }
+    
     /**
      * @return the upc
      */

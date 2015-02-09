@@ -17,7 +17,8 @@ class ProductReader {
     boolean hasNext() {
         throw new UnsupportedOperationException("Not yet implemented");
     }
-
+    
+    
     ProductSpecification getNextProduct() {
         throw new UnsupportedOperationException("Not yet implemented");
     }

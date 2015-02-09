@@ -26,27 +26,27 @@ public class Sale {
     
     public boolean initiateSale(String custName, List<Integer> upcList)
     {
-        //TODO
+       throw new UnsupportedOperationException("Not yet implemented");
     }
     
     public ProductSpecification addItem(int upc)
     {
-        //TODO
+        throw new UnsupportedOperationException("Not yet implemented");
     }
     
     public boolean makeCreditCardPayment(int cardNumber)
     {
-        //TODO
+        throw new UnsupportedOperationException("Not yet implemented");
     }
     
     public double makeCashPayment(double amount)
     {
-        //TODO
+        throw new UnsupportedOperationException("Not yet implemented");
     }
     
     public String generateReceipt()
     {
-        //TODO
+        throw new UnsupportedOperationException("Not yet implemented");
     }
 
 

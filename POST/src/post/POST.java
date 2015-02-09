@@ -33,12 +33,13 @@ public class POST {
     public boolean init()
     {
         catalog = new Catalog(PRODUCT_SPEC_FILE);
+        throw new UnsupportedOperationException("Not yet implemented");
     }
     
     
     public boolean shutDown()
     {
-        //TODO
+        throw new UnsupportedOperationException("Not yet implemented");
     }
     
     /**
@@ -48,7 +49,7 @@ public class POST {
      */
     public ProductSpecification addToCatalog(ProductSpecification itemDesc)
     {
-        //TODO
+        throw new UnsupportedOperationException("Not yet implemented");
     }
     
     /**
@@ -58,7 +59,7 @@ public class POST {
      */
     public ProductSpecification removeFromCatalog(int upc)
     {
-        //TODO
+        throw new UnsupportedOperationException("Not yet implemented");
     }  
     
     /**
@@ -69,7 +70,7 @@ public class POST {
      */
     public boolean recordSale(Sale s)
     {
-        //TODO
+        throw new UnsupportedOperationException("Not yet implemented");
     }
     
     /**
@@ -78,7 +79,7 @@ public class POST {
      */
     public String salesLog()
     {
-        //TODO
+        throw new UnsupportedOperationException("Not yet implemented");
     }        
     
 }

@@ -16,7 +16,7 @@ public class Sale {
     private double  amountDue = 0;
     private double totalCost = 0;
     private double changeDue = 0;
-    private double amountTendred = 0;
+    private double amountTendered = 0;
     private boolean isComplete = false;
     private int     numItems = 0;
     private Date    date;
@@ -41,6 +41,8 @@ public class Sale {
            amountDue += li.getQuantity() * li.getItemUnitCost();
        }
        totalCost += amountDue;
+       
+       this.lineItems.addAll(lineItems);
        return true;
     }
     /**
@@ -79,15 +81,15 @@ public class Sale {
         if(amountTendered < amountDue)
             throw new Exception("You didn't pay enough, you cheapskate!");
         
-        changeDue = amountDue - amountTendered;
+        changeDue = amountTendered - amountDue;
         isComplete = true;
         return changeDue;
     }
     
     public String generateInvoice()
     {
-        String invoice = "";
-        invoice += String.format("%20s", this.custName) + this.date + "\n";
+        String invoice = "Cornnut Emporium!\n";
+        invoice += String.format("Customer Name %20s", this.custName) + this.date + "\n";
         for(LineItem li : lineItems)
         {
             invoice += String.format("%25s %3d @ %4f subtotal: %f",li.getProductDescription(),
@@ -95,7 +97,14 @@ public class Sale {
                                                                    li.getItemUnitCost(),
                                                                    li.getItemUnitCost() * li.getQuantity())
                                                                    + "\n";
-        }    
+        }
+        invoice += "-------";
+        
+        invoice += "\nTotal Amount:    " + this.totalCost;
+        invoice += "\nAmount Tendered: " + this.amountTendered;
+        invoice += "\nAmount Returned: " + this.changeDue;
+        
+        return invoice;
         
         
         

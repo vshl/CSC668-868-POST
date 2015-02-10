@@ -4,6 +4,7 @@
  */
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -43,10 +44,11 @@ public class POST {
     /**
      * initializes the POST, builds 
      */
-    public boolean init()
+    public boolean init() throws IOException
     {
         catalog = new Catalog(PRODUCT_SPEC_FILE);
-        throw new UnsupportedOperationException("Not yet implemented");
+        return true;
+        //throw new UnsupportedOperationException("Not yet implemented");
     }
     
     

@@ -1,0 +1,17 @@
+Barack Obama
+1234
+1111     2
+2222     3
+<CASH $50000.50>
+
+Barack Obama
+1234
+1111     2
+2222     3
+<CHECK >
+
+Barack Obama
+1234
+1111     2
+2222     3
+<CREDIT 12345>

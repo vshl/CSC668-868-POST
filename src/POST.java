@@ -12,27 +12,30 @@ import java.util.List;
  * @author ryaneshleman
  */
 public class POST {
-    private final String PRODUCT_SPEC_FILE = "./products.txt";
-    private final String TRANSACTIONS_FILE = "./transactions.txt";
-    private final String SALES_LOG_FILE = "./sales_log.txt";
+    private final static String PRODUCT_SPEC_FILE = "./products.txt";
+    private final static String TRANSACTIONS_FILE = "./transactions.txt";
+    private final static String SALES_LOG_FILE = "./sales_log.txt";
     
-    private Catalog    catalog;
+    private static Catalog    catalog;
     private List<Sale> sales = new ArrayList<Sale>();
     
     
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) throws FileNotFoundException {
-        System.out.println("Hello POST!");
-        System.out.println("Hello POST!");
+    public static void main(String[] args) throws FileNotFoundException, Exception {
+
+        POST post = new POST();
+        post.init();
         
-        TransactionReader tr = new TransactionReader(catalog,TRANSACTIONS_FILE);
+        
+        TransactionReader tr = new TransactionReader(post.getCatalog(),TRANSACTIONS_FILE);
         
         Sale s;
         while(tr.hasNext())
         {
-            s = new Sale(tr.getN)
+            s = tr.getNextSale();
+            System.out.println(s.generateInvoice());
         }    
         
     }
@@ -90,6 +93,11 @@ public class POST {
     public String salesLog()
     {
         throw new UnsupportedOperationException("Not yet implemented");
+    }
+    
+    public Catalog getCatalog()
+    {
+        return catalog;
     }        
     
 }

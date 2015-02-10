@@ -25,5 +25,10 @@ public class LineItem {
     public double getItemUnitCost()
     {
         return item.productSpecs.getPrice();
+    }
+    
+    public String getProductDescription()
+    {
+        return item.productSpecs.getDescription();
     }        
 }

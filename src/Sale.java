@@ -4,6 +4,7 @@
  */
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -13,28 +14,40 @@ import java.util.List;
 public class Sale {
     private String custName;
     private double  amountDue = 0;
+    private double totalCost = 0;
+    private double changeDue = 0;
+    private double amountTendred = 0;
     private boolean isComplete = false;
     private int     numItems = 0;
+    private Date    date;
     
     ArrayList<LineItem> lineItems = new ArrayList<LineItem>();
+    
     
 
     public Sale()
     {
         //this.catalog = catalog;
         //TODO
+        
     }        
     
     public boolean initiateSale(String custName, List<LineItem> lineItems)
     {
        this.custName = custName;
+       this.date = new Date();
        for(LineItem li : lineItems)
        {
            amountDue += li.getQuantity() * li.getItemUnitCost();
        }
+       totalCost += amountDue;
        return true;
     }
-    
+    /**
+     * Incomplete, will build out if required later.
+     * @param upc
+     * @return 
+     */
     public ProductSpecification addItem(int upc)
     {
         throw new UnsupportedOperationException("Not yet implemented");
@@ -42,17 +55,50 @@ public class Sale {
     
     public boolean makeCreditCardPayment(int cardNumber)
     {
-        throw new UnsupportedOperationException("Not yet implemented");
+        if(Math.random() >=1)//denied
+            return false;
+        else
+        {
+            amountDue = 0;
+            isComplete = true;
+        }
+        
+        return isComplete;
     }
     
-    public double makeCashPayment(double amount)
+    /**
+     * Completes cash payment, returns amount due
+     * throws exception is not enough money
+     * @param amountTendered
+     * @return
+     * @throws Exception 
+     */
+    public double makeCashPayment(double amountTendered) throws Exception
     {
-        throw new UnsupportedOperationException("Not yet implemented");
+        // ignoring corner case when amountTendered < amountDue
+        if(amountTendered < amountDue)
+            throw new Exception("You didn't pay enough, you cheapskate!");
+        
+        changeDue = amountDue - amountTendered;
+        isComplete = true;
+        return changeDue;
     }
     
-    public String generateReceipt()
+    public String generateInvoice()
     {
-        throw new UnsupportedOperationException("Not yet implemented");
+        String invoice = "";
+        invoice += String.format("%20s", this.custName) + this.date + "\n";
+        for(LineItem li : lineItems)
+        {
+            invoice += String.format("%25s %3d @ %4f subtotal: %f",li.getProductDescription(),
+                                                                   li.getQuantity(),
+                                                                   li.getItemUnitCost(),
+                                                                   li.getItemUnitCost() * li.getQuantity())
+                                                                   + "\n";
+        }    
+        
+        
+        
     }
 
 

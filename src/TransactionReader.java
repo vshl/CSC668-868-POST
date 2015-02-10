@@ -16,8 +16,9 @@ import java.util.Scanner;
 public class TransactionReader {
     
     ArrayList<Sale> transactions = new ArrayList<Sale>();
+    int currentIteratorIndex = 1;
     
-    public TransactionReader(Catalog c, String TRANSACTION_FILE) throws FileNotFoundException
+    public TransactionReader(Catalog c, String TRANSACTION_FILE) throws FileNotFoundException, Exception
     {
         Scanner sc = new Scanner(new File(TRANSACTION_FILE));
         String custName;
@@ -80,11 +81,14 @@ public class TransactionReader {
      */
     public boolean hasNext()
     {
-    
+        return currentIteratorIndex<transactions.size();
     }
     
-    public LineItem getNextlineItem()
+    public Sale getNextSale()
     {
-    
+        Sale s = transactions.get(currentIteratorIndex);
+        currentIteratorIndex++;
+        return s;
+        
     }        
 }

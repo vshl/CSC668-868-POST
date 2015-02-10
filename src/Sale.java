@@ -1,8 +1,6 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 
+
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -107,7 +105,7 @@ public class Sale {
         invoice += String.format("Customer Name %20s", this.custName) + this.date + "\n";
         for(LineItem li : lineItems)
         {
-            invoice += String.format("%25s %3d @ %4f subtotal: %f",li.getProductDescription(),
+            invoice += String.format("%25s %3d @ %.2f subtotal: %.2f",li.getProductDescription(),
                                                                    li.getQuantity(),
                                                                    li.getItemUnitCost(),
                                                                    li.getItemUnitCost() * li.getQuantity())
@@ -115,9 +113,9 @@ public class Sale {
         }
         invoice += "-------";
         
-        invoice += "\nTotal Amount:    " + this.totalCost;
-        invoice += "\nAmount Tendered: " + this.amountTendered;
-        invoice += "\nAmount Returned: " + this.changeDue;
+        invoice += "\nTotal Amount:    " + round2Decimals(this.totalCost);
+        invoice += "\nAmount Tendered: " + round2Decimals(this.amountTendered);
+        invoice += "\nAmount Returned: " + round2Decimals(this.changeDue);
         invoice += "\nPayment Type:    " + this.payType + "\n";
         
         return invoice;
@@ -126,6 +124,15 @@ public class Sale {
         
     }
 
-
+    /**
+    * Helper method: formats doubles to 2 decimal places
+    * @param double value
+    * @return formatted double value
+    */
+    double round2Decimals(double value)
+    {
+        DecimalFormat df2 = new DecimalFormat("#.00");
+        return Double.valueOf(df2.format(value));
+    }
 
 }

@@ -13,6 +13,7 @@ import java.util.List;
  */
 public class Sale {
     private String custName;
+    private String payType;
     private double  amountDue = 0;
     private double totalCost = 0;
     private double changeDue = 0;
@@ -65,7 +66,16 @@ public class Sale {
             isComplete = true;
         }
         
+        payType = "CREDIT";
+        
         return isComplete;
+    }
+    
+    public boolean makeCheckPayment()
+    {
+    	isComplete = true;
+    	payType = "CHECK";
+    	return isComplete;
     }
     
     /**
@@ -83,6 +93,7 @@ public class Sale {
         
         changeDue = amountTendered - amountDue;
         isComplete = true;
+        payType = "CASH";
         return changeDue;
     }
     
@@ -103,6 +114,7 @@ public class Sale {
         invoice += "\nTotal Amount:    " + this.totalCost;
         invoice += "\nAmount Tendered: " + this.amountTendered;
         invoice += "\nAmount Returned: " + this.changeDue;
+        invoice += "\nPayment Type:    " + this.payType + "\n";
         
         return invoice;
         

@@ -60,12 +60,12 @@ public class TransactionReader {
             // determine whether processing credit card or cash/check
             if(nextLine.contains("CASH"))
             {
-                tender = Double.parseDouble(nextLine.substring(13).replace(">",""));
+                tender = Double.parseDouble(nextLine.substring(7).replace(">",""));
                 s.makeCashPayment(tender);
             }
             else if(nextLine.contains("CHECK"))
             {
-                 //TODO  ERIC  
+                 s.makeCheckPayment();
             }        
             else //process credit card
             {

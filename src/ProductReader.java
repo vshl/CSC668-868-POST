@@ -1,6 +1,6 @@
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+ * ProductReader class builds a list of product specifications to be cataloged. It
+ * takes in the UPC number, item description, and price of item from products.txt.
  */
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -8,13 +8,12 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.*;
 /**
- *
- * @author ryaneshleman
- * @author ericchu
+ * @author eric chu
  */
 class ProductReader {
 
 	ArrayList<ProductSpecification> specification = new ArrayList<ProductSpecification>();
+	int currentIteratorIndex = 0;
 	
     ProductReader(String PRODUCT_SPEC_FILE) throws IOException {
         //throw new UnsupportedOperationException("Not yet implemented");
@@ -60,13 +59,16 @@ class ProductReader {
     }
 
     boolean hasNext() {
-        throw new UnsupportedOperationException("Not yet implemented");
+        
+    	return currentIteratorIndex<specification.size();
     }
     
     
     ProductSpecification getNextProduct() {
-        throw new UnsupportedOperationException("Not yet implemented");
         
+        ProductSpecification ps = specification.get(currentIteratorIndex);
+        currentIteratorIndex++;
+        return ps;
         
     }
 }

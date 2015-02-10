@@ -3,6 +3,7 @@
  * and open the template in the editor.
  */
 
+import java.io.IOException;
 import java.util.HashMap;
 
 /**
@@ -15,8 +16,9 @@ public class Catalog {
     /**
      * constructor builds local hashmap from PRODUCT_SPEC_FILE
      * @param PRODUCT_SPEC_FILE 
+     * @throws IOException 
      */
-    public Catalog(String PRODUCT_SPEC_FILE)
+    public Catalog(String PRODUCT_SPEC_FILE) throws IOException
     {
         ProductReader pr = new ProductReader(PRODUCT_SPEC_FILE);
         

@@ -59,14 +59,18 @@ public class Sale {
     public boolean makeCreditCardPayment(int cardNumber)
     {
         if(Math.random() >=1)//denied
+        {
+        	payType = "CREDIT DENIED";
             return false;
+        }
         else
         {
             amountDue = 0;
             isComplete = true;
+            payType = "CREDIT";
         }
         
-        payType = "CREDIT";
+        
         
         return isComplete;
     }

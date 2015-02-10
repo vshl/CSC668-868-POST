@@ -7,9 +7,11 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.*;
+
 /**
  * @author eric chu
  */
+
 class ProductReader {
 
 	ArrayList<ProductSpecification> specification = new ArrayList<ProductSpecification>();

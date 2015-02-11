@@ -108,7 +108,7 @@ public class Sale {
         invoice += String.format("Customer Name: %10s %5s %s\n", this.custName, ' ', this.date);
         for(LineItem li : lineItems)
         {
-            invoice += String.format("%-20s %3d @ %8.2f subtotal:  %8.2f",li.getProductDescription(),
+            invoice += String.format("Item: %-20s %3d @ %8.2f subtotal:  %8.2f",li.getProductDescription(),
                                                                    li.getQuantity(),
                                                                    li.getItemUnitCost(),
                                                                    li.getItemUnitCost() * li.getQuantity())

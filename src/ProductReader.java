@@ -9,7 +9,7 @@ import java.io.IOException;
 import java.util.*;
 
 /**
- * @author eric chu
+ * @author Eric Chu
  */
 
 class ProductReader {
@@ -17,8 +17,15 @@ class ProductReader {
 	ArrayList<ProductSpecification> specification = new ArrayList<ProductSpecification>();
 	int currentIteratorIndex = 0;
 	
+	/**
+	 * Default constructor for the ProductReader class. It takes in a text file from the POST
+	 * class and reads it. It then extracts all the data from the text file and assigns 
+	 * specific parts to its respective variables such as UPC, description and price.
+	 * 
+	 * @param PRODUCT_SPEC_FILE
+	 * @throws IOException
+	 */
     ProductReader(String PRODUCT_SPEC_FILE) throws IOException {
-        //throw new UnsupportedOperationException("Not yet implemented");
     
     	ProductSpecification tempSpecification;
     	int tempUPC;
@@ -29,12 +36,14 @@ class ProductReader {
     	
     	try 
     	{
-    		
+    		//reads in the products.txt from POST class
     		String line;
 			br = new BufferedReader(new FileReader(PRODUCT_SPEC_FILE));
 			
+			//goes line by line to extract the data
 			while((line = br.readLine()) != null)
 			{
+				//3 columns in each line represents the UPC, description, and price per item
 				tempUPC = Integer.parseInt(line.substring(0,4));
 				tempText = line.substring(9,28);
 				tempAmount = Double.parseDouble(line.substring(34));
@@ -45,11 +54,11 @@ class ProductReader {
 		}
     	catch (FileNotFoundException e) 
 		{
-			
 			e.printStackTrace();
 		} 
 		finally
 		{
+			//closing out the file
 			try
 			{
 				br.close();
@@ -60,12 +69,21 @@ class ProductReader {
 		}
     }
 
+    /**
+     * Returns true or false depending on whether or not there are anymore products
+     * to be read.
+     * @return boolean
+     */
     boolean hasNext() {
         
     	return currentIteratorIndex<specification.size();
     }
     
     
+    /**
+     * Returns the next product in the list of products.
+     * @return
+     */
     ProductSpecification getNextProduct() {
         
         ProductSpecification ps = specification.get(currentIteratorIndex);

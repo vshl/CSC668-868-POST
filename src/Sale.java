@@ -102,7 +102,7 @@ public class Sale {
     public String generateInvoice()
     {
         String invoice = "Cornnut Emporium!\n";
-        invoice += String.format("Customer Name %20s", this.custName) + this.date + "\n";
+        invoice += String.format("Customer Name: %10s %5s %s\n", this.custName, ' ', this.date);
         for(LineItem li : lineItems)
         {
             invoice += String.format("%25s %3d @ %.2f subtotal: %.2f",li.getProductDescription(),
@@ -113,10 +113,10 @@ public class Sale {
         }
         invoice += "-------";
         
-        invoice += "\nTotal Amount:    " + round2Decimals(this.totalCost);
-        invoice += "\nAmount Tendered: " + round2Decimals(this.amountTendered);
-        invoice += "\nAmount Returned: " + round2Decimals(this.changeDue);
-        invoice += "\nPayment Type:    " + this.payType + "\n";
+        invoice += "\nTotal Amount     :    " + formatDouble(this.totalCost);
+        invoice += "\nAmount Tendered  :    " + formatDouble(this.amountTendered);
+        invoice += "\nAmount Returned  :    " + formatDouble(this.changeDue);
+        invoice += "\nPayment Type     :    " + this.payType + "\n";
         
         return invoice;
         
@@ -129,10 +129,10 @@ public class Sale {
     * @param double value
     * @return formatted double value
     */
-    double round2Decimals(double value)
+    double formatDouble(double value)
     {
-        DecimalFormat df2 = new DecimalFormat("#.00");
-        return Double.valueOf(df2.format(value));
+        DecimalFormat df = new DecimalFormat("#.00");
+        return Double.valueOf(df.format(value));
     }
 
 }

@@ -4,7 +4,7 @@
  */
 
 /**
- *
+ *  Holds information about the given product.
  * @author ryaneshleman
  */
 public class ProductSpecification {
@@ -12,7 +12,12 @@ public class ProductSpecification {
     private String description;
     private double price;
 
-    
+    /**
+     * Constructor initializes all values
+     * @param upc
+     * @param description
+     * @param price 
+     */
     public ProductSpecification(int upc, String description, double price)
     {
         this.upc = upc;

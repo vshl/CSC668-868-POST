@@ -9,20 +9,23 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- *
+ * This class holds the main function of the program.  Is the main interface
+ * between the
  * @author ryaneshleman
  */
 public class POST {
 
     private final static String PRODUCT_SPEC_FILE = "./products.txt";
     private final static String TRANSACTIONS_FILE = "./transactions.txt";
-    private final static String SALES_LOG_FILE = "./sales_log.txt";
-    private static Catalog catalog;
+    private static       Catalog catalog;
 
-    
     private List<Sale> sales = new ArrayList<Sale>();
 
     /**
+     * Main look of the POST
+     * It reads and completes transactions from the TRANSACTIONS_FILE
+     * It then prints the invoices to console
+     * 
      * @param args the command line arguments
      */
     public static void main(String[] args) throws FileNotFoundException, Exception {
@@ -30,24 +33,28 @@ public class POST {
         POST post = new POST();
         post.init();
 
-
         TransactionReader tr = new TransactionReader(post.getCatalog(), TRANSACTIONS_FILE);
 
         Sale s;
         while (tr.hasNext()) {
             s = tr.getNextSale();
             printInvoice(s);
+            post.addSale(s);
 
         }
 
     }
-    
+    /**
+     * Retrieves invoice from Sale object
+     * prints to stdout
+     * @param s 
+     */
     private static void printInvoice(Sale s) {
         System.out.println(s.generateInvoice());
     }
 
     /**
-     * initializes the POST, builds
+     * initializes the POST, builds catalog
      */
     public boolean init() throws IOException {
         catalog = new Catalog(PRODUCT_SPEC_FILE);
@@ -80,7 +87,9 @@ public class POST {
     }
 
     /**
-     * if the sale is completed ie s.isCompleted == true, the sale is written in
+     *  *** FUTURE FEATURE****
+     * 
+     * if the sale is completed s.isCompleted == true, the sale is written in
      * the sales log
      *
      * @param s
@@ -99,6 +108,15 @@ public class POST {
         return s;
     }
     
+    /**
+     * Passes payment information to the Sale object according to the payment type
+     * @param s
+     * @param paymentMethod
+     * @param amount
+     * @param cardNumber
+     * @return
+     * @throws Exception 
+     */
     public Sale makePayment(Sale s, String paymentMethod, double amount, int cardNumber) throws Exception
     {
         if(paymentMethod.equals("CASH"))
@@ -112,11 +130,21 @@ public class POST {
             
     }        
     
+    /**
+     *   FUTURE FEATURE
+     * 
+     * retreive the sales log from file, print to screen
+     * @return 
+     */
     public String salesLog() {
         throw new UnsupportedOperationException("Not yet implemented");
     }
-
+    
     public Catalog getCatalog() {
         return catalog;
+    }
+
+    private void addSale(Sale s) {
+        this.sales.add(s);
     }
 }

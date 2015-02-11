@@ -4,12 +4,13 @@
  */
 
 /**
- *
+ * holts an item and the quantity of that item to be sold
+ * 
  * @author ryaneshleman
  */
 public class LineItem {
-    Item item;
-    int quantity;
+    private Item item;
+    private int quantity;
     
     public LineItem(Item item, int quantity)
     {
@@ -24,11 +25,11 @@ public class LineItem {
     
     public double getItemUnitCost()
     {
-        return item.productSpecs.getPrice();
+        return item.getProductSpecs().getPrice();
     }
     
     public String getProductDescription()
     {
-        return item.productSpecs.getDescription();
+        return item.getProductSpecs().getDescription();
     }        
 }

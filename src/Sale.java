@@ -63,6 +63,7 @@ public class Sale {
         }
         else
         {
+            this.amountTendered = amountDue;
             amountDue = 0;
             isComplete = true;
             payType = "CREDIT";
@@ -75,7 +76,8 @@ public class Sale {
     
     public boolean makeCheckPayment()
     {
-    	isComplete = true;
+    	this.amountTendered = amountDue;
+        isComplete = true;
     	payType = "CHECK";
     	return isComplete;
     }
@@ -89,6 +91,7 @@ public class Sale {
      */
     public double makeCashPayment(double amountTendered) throws Exception
     {
+        this.amountTendered = amountTendered;
         // ignoring corner case when amountTendered < amountDue
         if(amountTendered < amountDue)
             throw new Exception("You didn't pay enough, you cheapskate!");
@@ -101,11 +104,11 @@ public class Sale {
     
     public String generateInvoice()
     {
-        String invoice = "Cornnut Emporium!\n";
+        String invoice = "Welcome To Cornnut Emporium!\n\n";
         invoice += String.format("Customer Name: %10s %5s %s\n", this.custName, ' ', this.date);
         for(LineItem li : lineItems)
         {
-            invoice += String.format("%25s %3d @ %.2f subtotal: %.2f",li.getProductDescription(),
+            invoice += String.format("%-20s %3d @ %8.2f subtotal:  %8.2f",li.getProductDescription(),
                                                                    li.getQuantity(),
                                                                    li.getItemUnitCost(),
                                                                    li.getItemUnitCost() * li.getQuantity())
@@ -113,10 +116,11 @@ public class Sale {
         }
         invoice += "-------";
         
-        invoice += "\nTotal Amount     :    " + formatDouble(this.totalCost);
-        invoice += "\nAmount Tendered  :    " + formatDouble(this.amountTendered);
-        invoice += "\nAmount Returned  :    " + formatDouble(this.changeDue);
+        invoice += "\nTotal Amount     :    $" + formatDouble(this.totalCost);
+        invoice += "\nAmount Tendered  :    $" + formatDouble(this.amountTendered);
+        invoice += "\nAmount Returned  :    $" + formatDouble(this.changeDue);
         invoice += "\nPayment Type     :    " + this.payType + "\n";
+        invoice += "END TRANSACTION\n";
         
         return invoice;
         

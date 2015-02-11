@@ -7,7 +7,7 @@ import java.io.IOException;
 import java.util.HashMap;
 
 /**
- *
+ * Main data structure to do UPC - ProductSpecification mappings
  * @author ryaneshleman
  */
 public class Catalog {
@@ -26,27 +26,38 @@ public class Catalog {
         while(pr.hasNext())
         {
             tmp = pr.getNextProduct();
-            
-            this.products.put(tmp.getUpc(),tmp);
+            addItem(tmp);
         }    
         
     }
     
-    
+    /**
+     * returns the ProductSpecification from a given UPC
+     * @param upc
+     * @return 
+     */
     public ProductSpecification getProduct(int upc)
     {
         return products.get(upc);
     }
     
     
-    
+    /**
+     * adds a ProductSpecifcation to the mapping
+     * @param p
+     * @return 
+     */
     public ProductSpecification addItem(ProductSpecification p)
     {
         return products.put(p.getUpc(),p);
     }
     
     
-    
+    /**
+     * Removes an item from the Catalog based on its UPC
+     * @param upc
+     * @return 
+     */
     public ProductSpecification removeItem(int upc)
     {
         return products.remove(products.get(upc));

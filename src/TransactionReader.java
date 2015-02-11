@@ -15,8 +15,8 @@ import java.util.Scanner;
  */
 public class TransactionReader {
     
-    ArrayList<Sale> transactions = new ArrayList<Sale>();
-    int currentIteratorIndex = 0;
+    private ArrayList<Sale> transactions = new ArrayList<Sale>();
+    private int currentIteratorIndex = 0;
     
     public TransactionReader(Catalog c, String TRANSACTION_FILE) throws FileNotFoundException, Exception
     {
@@ -32,14 +32,16 @@ public class TransactionReader {
         int creditCardNumber;
         LineItem li;
         
+        // main read loop, initializes Sales objects, makes makes payments, then
+        // stores in transactions list
         while(sc.hasNext())
         {
             custName = sc.nextLine();
             items = new ArrayList<LineItem>();
             
             s = new Sale();
-
             nextLine = sc.nextLine();
+            
             // Extact Line ITems
             while(!nextLine.startsWith("<"))
             {
@@ -65,13 +67,13 @@ public class TransactionReader {
                 s.makeCreditCardPayment(creditCardNumber);
             }
             transactions.add(s);
-            //System.out.println(s.generateInvoice());
             
-            if(!sc.hasNext())
+            if(!sc.hasNext())  //reached end of file
                 break;
             
             sc.nextLine();
-        }    
+        }
+    sc.close();    
     }
     
         
@@ -93,7 +95,14 @@ public class TransactionReader {
         return s;
         
     }
-
+    /**
+     * takes a string as input and a reference to the catalog,
+     * initializes and returns a LineItem from the information extracted
+     * from the string;
+     * @param nextLine
+     * @param c
+     * @return 
+     */
     private LineItem extractLineItem(String nextLine, Catalog c) {
             
         int upc, quantity;

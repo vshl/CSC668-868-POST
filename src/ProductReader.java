@@ -14,8 +14,8 @@ import java.util.*;
 
 class ProductReader {
 
-	ArrayList<ProductSpecification> specification = new ArrayList<ProductSpecification>();
-	int currentIteratorIndex = 0;
+	private ArrayList<ProductSpecification> specification = new ArrayList<ProductSpecification>();
+	private int currentIteratorIndex = 0;
 	
 	/**
 	 * Default constructor for the ProductReader class. It takes in a text file from the POST

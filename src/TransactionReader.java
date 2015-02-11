@@ -20,6 +20,7 @@ public class TransactionReader {
     
     public TransactionReader(Catalog c, String TRANSACTION_FILE) throws FileNotFoundException, Exception
     {
+        
         Scanner sc = new Scanner(new File(TRANSACTION_FILE));
         String custName;
         String nextLine;
@@ -29,29 +30,20 @@ public class TransactionReader {
         Sale s;
         double tender;
         int creditCardNumber;
+        LineItem li;
         
         while(sc.hasNext())
         {
             custName = sc.nextLine();
             items = new ArrayList<LineItem>();
-            s = new Sale();
             
+            s = new Sale();
+
             nextLine = sc.nextLine();
+            // Extact Line ITems
             while(!nextLine.startsWith("<"))
             {
-                upc = Integer.parseInt(nextLine.substring(0,4));
-                item = new Item(c.getProduct(upc));
-                
-                //check if quantity is specificed
-                if(nextLine.length() > 5)
-                {
-                    quantity = Integer.parseInt(nextLine.substring(9));
-                }
-                else
-                    quantity = 1;
-                    
-                
-                items.add(new LineItem(item, quantity));
+                li = extractLineItem(nextLine,c);
                 nextLine = sc.nextLine();
             }
             
@@ -82,7 +74,7 @@ public class TransactionReader {
         }    
     }
     
-    
+        
     
     /**
      * returns true if there are more transactions to read
@@ -100,5 +92,24 @@ public class TransactionReader {
         
         return s;
         
-    }        
+    }
+
+    private LineItem extractLineItem(String nextLine, Catalog c) {
+            
+        int upc, quantity;
+        Item item;
+        upc = Integer.parseInt(nextLine.substring(0,4));
+        item = new Item(c.getProduct(upc));
+                
+        //check if quantity is specificed
+        if(nextLine.length() > 5)
+        {
+              quantity = Integer.parseInt(nextLine.substring(9));
+        }
+        else
+            quantity = 1;
+                    
+                
+        return new LineItem(item, quantity);
+    }
 }

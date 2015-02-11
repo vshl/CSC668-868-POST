@@ -133,7 +133,7 @@ public class Sale {
     * @param double value
     * @return formatted double value
     */
-    double formatDouble(double value)
+    private double formatDouble(double value)
     {
         DecimalFormat df = new DecimalFormat("#.00");
         return Double.valueOf(df.format(value));

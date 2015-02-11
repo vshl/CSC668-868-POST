@@ -18,6 +18,7 @@ public class POST {
     private final static String PRODUCT_SPEC_FILE = "./products.txt";
     private final static String TRANSACTIONS_FILE = "./transactions.txt";
     private static       Catalog catalog;
+    private boolean isReady = false;
 
     private List<Sale> sales = new ArrayList<Sale>();
 
@@ -58,12 +59,14 @@ public class POST {
      */
     public boolean init() throws IOException {
         catalog = new Catalog(PRODUCT_SPEC_FILE);
+        isReady = true;
         return true;
         //throw new UnsupportedOperationException("Not yet implemented");
     }
 
     public boolean shutDown() {
-        throw new UnsupportedOperationException("Not yet implemented");
+        isReady = false;
+        return isReady;
     }
 
     /**

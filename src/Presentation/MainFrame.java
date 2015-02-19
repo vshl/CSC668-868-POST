@@ -21,7 +21,7 @@ public class MainFrame extends javax.swing.JFrame {
 	public MainFrame() {
 		initComponents();
 		TitledBorder title;
-		title = BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.black), "title");
+		title = BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.black), "PRODUCT");
 		title.setTitlePosition(TitledBorder.CENTER);
 		jPanel2.setBorder(title);
 	}

@@ -26,7 +26,6 @@ public class TransactionReader {
         String nextLine;
         int upc,quantity;
         ArrayList<LineItem> items;
-        Item item;
         Sale s;
         double tender;
         int creditCardNumber;
@@ -107,9 +106,8 @@ public class TransactionReader {
     private LineItem extractLineItem(String nextLine, Catalog c) {
             
         int upc, quantity;
-        Item item;
         upc = Integer.parseInt(nextLine.substring(0,4));
-        item = new Item(c.getProduct(upc));
+        ProductSpecification productSpec = c.getProduct(upc);
                 
         //check if quantity is specificed
         if(nextLine.length() > 5)
@@ -120,6 +118,6 @@ public class TransactionReader {
             quantity = 1;
                     
                 
-        return new LineItem(item, quantity);
+        return new LineItem(productSpec, quantity);
     }
 }

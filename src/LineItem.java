@@ -9,12 +9,12 @@
  * @author ryaneshleman
  */
 public class LineItem {
-    private Item item;
-    private int quantity;
+    private final ProductSpecification productSpecs;
+    private final int quantity;
     
-    public LineItem(Item item, int quantity)
+    public LineItem(ProductSpecification productSpecs, int quantity)
     {
-        this.item = item;
+        this.productSpecs = productSpecs;
         this.quantity = quantity;
     }       
     
@@ -25,11 +25,11 @@ public class LineItem {
     
     public double getItemUnitCost()
     {
-        return item.getProductSpecs().getPrice();
+        return this.productSpecs.getPrice();
     }
     
     public String getProductDescription()
     {
-        return item.getProductSpecs().getDescription();
+        return this.productSpecs.getDescription();
     }        
 }

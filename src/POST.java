@@ -56,6 +56,8 @@ public class POST {
 
     /**
      * initializes the POST, builds catalog
+     * @return 
+     * @throws java.io.IOException
      */
     public boolean init() throws IOException {
         catalog = new Catalog(PRODUCT_SPEC_FILE);
@@ -67,26 +69,6 @@ public class POST {
     public boolean shutDown() {
         isReady = false;
         return isReady;
-    }
-
-    /**
-     * adds item to catalog
-     *
-     * @param itemDesc
-     * @return
-     */
-    public ProductSpecification addToCatalog(ProductSpecification itemDesc) {
-        return catalog.addItem(itemDesc);
-    }
-
-    /**
-     * removes item from catalog
-     *
-     * @param upc
-     * @return
-     */
-    public ProductSpecification removeFromCatalog(int upc) {
-        throw new UnsupportedOperationException("Not yet implemented");
     }
 
     /**
@@ -102,12 +84,17 @@ public class POST {
         throw new UnsupportedOperationException("Not yet implemented");
     }
 
-  
+    public boolean addLineItem(ProductSpecification productSpecs, int quantity)
+    {
+        Sale s = new Sale();
+        s.addLineItem(productSpecs, quantity);
+        return true;    
+    }
     
     public Sale initiateSale(String custName, ArrayList<LineItem> lineItems)
     {
         Sale s = new Sale();
-        s.initiateSale(custName,lineItems);
+        s.initiateSale(custName, lineItems);
         return s;
     }
     

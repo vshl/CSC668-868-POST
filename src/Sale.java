@@ -29,11 +29,19 @@ public class Sale {
         //this.catalog = catalog;
         //TODO
         
-    }        
+    }
     
-    public boolean initiateSale(String custName, List<LineItem> lineItems)
+    public boolean addLineItem(ProductSpecification productSpecs, int quantity)
+    {
+        LineItem lineItem = new LineItem(productSpecs, quantity);
+        this.lineItems.add(lineItem);
+        return true;
+    }
+    
+    public boolean initiateSale(String custName, ArrayList<LineItem> lineItems)
     {
        this.custName = custName;
+       this.lineItems = lineItems;
        this.date = new Date();
        for(LineItem li : lineItems)
        {

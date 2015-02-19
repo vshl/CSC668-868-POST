@@ -1,3 +1,7 @@
+package com.post.client;
+
+import com.post.server.ProductSpecification;
+
 /*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.

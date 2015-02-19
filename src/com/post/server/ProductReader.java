@@ -1,7 +1,10 @@
+package com.post.server;
+
 /*
  * ProductReader class builds a list of product specifications to be cataloged. It
  * takes in the UPC number, item description, and price of item from products.txt.
  */
+import com.post.server.ProductSpecification;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;

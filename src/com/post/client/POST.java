@@ -1,15 +1,11 @@
 package com.post.client;
 
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 import com.post.server.Catalog;
-import java.io.FileNotFoundException;
-import java.io.IOException;
+import com.post.server.ProductSpecification;
 import java.util.ArrayList;
 import java.util.List;
+import java.io.IOException;
+import java.io.FileNotFoundException;
 
 /**
  * This class holds the main function of the program.  Is the main interface
@@ -23,6 +19,8 @@ public class POST {
     private static       Catalog catalog;
     private boolean isReady = false;
 
+    private Sale s = new Sale();
+    private ArrayList<LineItem> lineItems = new ArrayList<LineItem>();
     private List<Sale> sales = new ArrayList<Sale>();
 
     /**
@@ -31,23 +29,14 @@ public class POST {
      * It then prints the invoices to console
      * 
      * @param args the command line arguments
+     * @throws IOException
      */
-    public static void main(String[] args) throws FileNotFoundException, Exception {
+    public static void main(String[] args) throws IOException {
 
         POST post = new POST();
         post.init();
-
-        TransactionReader tr = new TransactionReader(post.getCatalog(), TRANSACTIONS_FILE);
-
-        Sale s;
-        while (tr.hasNext()) {
-            s = tr.getNextSale();
-            printInvoice(s);
-            post.addSale(s);
-
-        }
-
     }
+
     /**
      * Retrieves invoice from Sale object
      * prints to stdout
@@ -62,7 +51,7 @@ public class POST {
      * @return 
      * @throws java.io.IOException
      */
-    public boolean init() throws IOException {
+    public boolean init() throws IOException, FileNotFoundException {
         catalog = new Catalog(PRODUCT_SPEC_FILE);
         isReady = true;
         return true;
@@ -72,6 +61,26 @@ public class POST {
     public boolean shutDown() {
         isReady = false;
         return isReady;
+    }
+
+    /**
+     * initiates the sale
+     * @param  custName  
+     * @param  lineItems
+     * @return
+     */
+    public Sale initiateSale(String custName)
+    {
+        s.initiateSale(custName);
+        return s;
+    }
+    
+    public boolean addLineItem(ProductSpecification productSpecs, int quantity)
+    {
+        LineItem li;
+        li = s.addLineItem(productSpecs, quantity);
+        this.lineItems.add(li);
+        return true;
     }
 
     /**
@@ -86,21 +95,7 @@ public class POST {
     public boolean recordSale(Sale s) {
         throw new UnsupportedOperationException("Not yet implemented");
     }
-
-    public boolean addLineItem(ProductSpecification productSpecs, int quantity)
-    {
-        Sale s = new Sale();
-        s.addLineItem(productSpecs, quantity);
-        return true;    
-    }
-    
-    public Sale initiateSale(String custName, ArrayList<LineItem> lineItems)
-    {
-        Sale s = new Sale();
-        s.initiateSale(custName, lineItems);
-        return s;
-    }
-    
+        
     /**
      * Passes payment information to the Sale object according to the payment type
      * @param s

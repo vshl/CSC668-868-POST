@@ -4,6 +4,8 @@ package com.post.client;
 
 import com.post.server.ProductSpecification;
 import com.post.client.LineItem;
+
+
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -64,54 +66,6 @@ public class Sale {
     public ProductSpecification addItem(int upc)
     {
         throw new UnsupportedOperationException("Not yet implemented");
-    }
-    
-    public boolean makeCreditCardPayment(int cardNumber)
-    {
-        if(Math.random() >=1)//denied
-        {
-        	payType = "CREDIT DENIED";
-            return false;
-        }
-        else
-        {
-            this.amountTendered = amountDue;
-            amountDue = 0;
-            isComplete = true;
-            payType = "CREDIT";
-        }
-        
-        
-        
-        return isComplete;
-    }
-    
-    public boolean makeCheckPayment()
-    {
-    	this.amountTendered = amountDue;
-        isComplete = true;
-    	payType = "CHECK";
-    	return isComplete;
-    }
-    
-    /**
-     * Completes cash payment, returns amount due
-     * throws exception is not enough money
-     * @param amountTendered
-     * @return
-     * @throws Exception 
-     */
-    public double makeCashPayment(double amountTendered) throws Exception
-    {
-        this.amountTendered = amountTendered;
-        // ignoring corner case when amountTendered < amountDue
-        if(amountTendered < amountDue)
-            throw new Exception("You didn't pay enough, you cheapskate!");
-        
-        changeDue = amountTendered - amountDue;
-        isComplete = true;
-        payType = "CASH";
-        return changeDue;
     }
     
     public String generateInvoice()

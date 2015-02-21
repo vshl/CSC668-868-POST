@@ -24,7 +24,7 @@ public class Sale {
     private int     numItems = 0;
     private Date    date;
     
-    ArrayList<LineItem> lineItems = new ArrayList<LineItem>();
+    ArrayList<LineItem> lineItems = new ArrayList<>();
     
     
 
@@ -35,27 +35,19 @@ public class Sale {
         
     }
     
-    public boolean addLineItem(ProductSpecification productSpecs, int quantity)
-    {
-        LineItem lineItem = new LineItem(productSpecs, quantity);
-        this.lineItems.add(lineItem);
-        return true;
-    }
-    
-    public boolean initiateSale(String custName, ArrayList<LineItem> lineItems)
+    public boolean initiateSale(String custName)
     {
        this.custName = custName;
-       this.lineItems = lineItems;
        this.date = new Date();
-       for(LineItem li : lineItems)
-       {
-           amountDue += li.getQuantity() * li.getItemUnitCost();
-       }
-       totalCost += amountDue;
-       
-       this.lineItems.addAll(lineItems);
        return true;
     }
+    
+    public LineItem addLineItem(ProductSpecification productSpecs, int quantity)
+    {
+        LineItem lineItem = new LineItem(productSpecs, quantity);
+        return lineItem;
+    }
+    
     /**
      * Incomplete, will build out if required later.
      * @param upc

@@ -4,8 +4,6 @@ package com.post.client;
 
 import com.post.server.ProductSpecification;
 import com.post.client.LineItem;
-
-
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Date;

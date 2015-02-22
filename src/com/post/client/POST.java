@@ -6,10 +6,12 @@ package com.post.client;
  */
 
 import com.post.interfaces.CatalogInterface;
+import com.post.interfaces.ProductSpecificationInterface;
 import com.post.interfaces.StoreInterface;
 import com.post.server.Catalog;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -66,7 +68,7 @@ public class Post {
      * which it will request the catalog
      * @param store 
      */
-    public Post(StoreInterface store)
+    public Post(StoreInterface store) throws RemoteException
     {
         this.store = store;
         this.catalog = store.getCatalog();
@@ -104,7 +106,7 @@ public class Post {
         throw new UnsupportedOperationException("Not yet implemented");
     }
 
-    public boolean addLineItem(ProductSpecification productSpecs, int quantity)
+    public boolean addLineItem(ProductSpecificationInterface productSpecs, int quantity)
     {
         Sale s = new Sale();
         s.addLineItem(productSpecs, quantity);

@@ -5,6 +5,8 @@ package com.post.client;
  * and open the template in the editor.
  */
 
+import com.post.interfaces.CatalogInterface;
+import com.post.interfaces.StoreInterface;
 import com.post.server.Catalog;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -16,17 +18,18 @@ import java.util.List;
  * between the
  * @author ryaneshleman
  */
-public class POST {
+public class Post {
 
     private final static String PRODUCT_SPEC_FILE = "./products.txt";
     private final static String TRANSACTIONS_FILE = "./transactions.txt";
-    private static       Catalog catalog;
+    private static       CatalogInterface catalog;
     private boolean isReady = false;
+    private StoreInterface store;
 
     private List<Sale> sales = new ArrayList<Sale>();
 
     /**
-     * Main look of the POST
+     * Main look of the Post
      * It reads and completes transactions from the TRANSACTIONS_FILE
      * It then prints the invoices to console
      * 
@@ -34,7 +37,7 @@ public class POST {
      */
     public static void main(String[] args) throws FileNotFoundException, Exception {
 
-        POST post = new POST();
+        Post post = new Post();
         post.init();
 
         TransactionReader tr = new TransactionReader(post.getCatalog(), TRANSACTIONS_FILE);
@@ -57,18 +60,32 @@ public class POST {
         System.out.println(s.generateInvoice());
     }
 
+    
     /**
-     * initializes the POST, builds catalog
+     * The Post constructor is passed a reference to the remote Store object from
+     * which it will request the catalog
+     * @param store 
+     */
+    public Post(StoreInterface store)
+    {
+        this.store = store;
+        this.catalog = store.getCatalog();
+    }        
+    /**
+     * initializes the Post, builds catalog
      * @return 
      * @throws java.io.IOException
      */
+    
+    /*  Moved this functionality into the constructor  
     public boolean init() throws IOException {
+        
         catalog = new Catalog(PRODUCT_SPEC_FILE);
         isReady = true;
         return true;
         //throw new UnsupportedOperationException("Not yet implemented");
     }
-
+    */
     public boolean shutDown() {
         isReady = false;
         return isReady;

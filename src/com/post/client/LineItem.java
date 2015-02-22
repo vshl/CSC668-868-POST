@@ -1,5 +1,6 @@
 package com.post.client;
 
+import com.post.interfaces.ProductSpecificationInterface;
 import com.post.server.ProductSpecification;
 
 /*
@@ -13,10 +14,10 @@ import com.post.server.ProductSpecification;
  * @author ryaneshleman
  */
 public class LineItem {
-    private final ProductSpecification productSpecs;
+    private final ProductSpecificationInterface productSpecs;
     private final int quantity;
     
-    public LineItem(ProductSpecification productSpecs, int quantity)
+    public LineItem(ProductSpecificationInterface productSpecs, int quantity)
     {
         this.productSpecs = productSpecs;
         this.quantity = quantity;

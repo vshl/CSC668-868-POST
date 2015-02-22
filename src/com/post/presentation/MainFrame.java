@@ -5,7 +5,13 @@
  */
 package com.post.presentation;
 
+import com.post.client.Post;
+import com.post.interfaces.StoreInterface;
 import java.awt.Color;
+import java.rmi.NotBoundException;
+import java.rmi.RemoteException;
+import java.rmi.registry.LocateRegistry;
+import java.rmi.registry.Registry;
 import javax.swing.BorderFactory;
 import javax.swing.border.TitledBorder;
 
@@ -14,7 +20,8 @@ import javax.swing.border.TitledBorder;
  * @author Sammy
  */
 public class MainFrame extends javax.swing.JFrame {
-
+        private StoreInterface store;
+    
 	/**
 	 * Creates new form MainFrame
 	 */
@@ -28,6 +35,10 @@ public class MainFrame extends javax.swing.JFrame {
 		productPanel.setBorder(product);
 		invoicePanel.setBorder(invoice);
 		paymentPanel.setBorder(payment);
+                
+                initRmi();
+                
+                Post post = new Post(store);
 	}
 
 	/**
@@ -323,4 +334,27 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JLabel upcLabel;
     private javax.swing.JComboBox upcMenu;
     // End of variables declaration//GEN-END:variables
+
+    private void initRmi() {
+        if(System.getSecurityManager() == null)
+            System.setSecurityManager(new SecurityManager());
+        
+        
+        try{
+            System.out.println("Finding Registry");
+            Registry rmtReg = LocateRegistry.getRegistry();
+            
+            System.out.println("Binding remote reference to StoreInterface");
+             this.store = (StoreInterface)rmtReg.lookup("store");
+           
+        }
+        catch(RemoteException ex)
+        {
+            ex.printStackTrace();
+        }catch(NotBoundException ex)
+        {
+            ex.printStackTrace();
+        }
+    }
+
 }

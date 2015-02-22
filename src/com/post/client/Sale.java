@@ -4,6 +4,7 @@ package com.post.client;
 
 import com.post.server.ProductSpecification;
 import com.post.client.LineItem;
+import com.post.interfaces.ProductSpecificationInterface;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -35,7 +36,7 @@ public class Sale {
         
     }
     
-    public boolean addLineItem(ProductSpecification productSpecs, int quantity)
+    public boolean addLineItem(ProductSpecificationInterface productSpecs, int quantity)
     {
         LineItem lineItem = new LineItem(productSpecs, quantity);
         this.lineItems.add(lineItem);

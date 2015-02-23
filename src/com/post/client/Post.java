@@ -16,7 +16,7 @@ import java.util.List;
  * between the
  * @author ryaneshleman
  */
-public class POST {
+public class Post {
 
     private final static String PRODUCT_SPEC_FILE = "./products.txt";
     private final static String TRANSACTIONS_FILE = "./transactions.txt";
@@ -34,7 +34,7 @@ public class POST {
      */
     public static void main(String[] args) throws FileNotFoundException, Exception {
 
-        POST post = new POST();
+        Post post = new Post();
         post.init();
 
         TransactionReader tr = new TransactionReader(post.getCatalog(), TRANSACTIONS_FILE);

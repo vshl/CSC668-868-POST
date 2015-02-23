@@ -1,11 +1,12 @@
 
 import com.post.client.Sale;
-import com.post.server.ProductSpecification;
+import com.post.server.ProductImpl;
 import com.post.client.LineItem;
 import com.post.server.Catalog;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 /*
@@ -19,17 +20,17 @@ import java.util.Scanner;
  */
 public class TransactionReader {
     
-    private ArrayList<Sale> transactions = new ArrayList<Sale>();
+    private List<Sale> transactions = new ArrayList<Sale>();
     private int currentIteratorIndex = 0;
     
-    public TransactionReader(Catalog c, String TRANSACTION_FILE) throws FileNotFoundException, Exception
+    public TransactionReader(Catalog c, String transaction_file_name) throws FileNotFoundException, Exception
     {
         
-        Scanner sc = new Scanner(new File(TRANSACTION_FILE));
+        Scanner sc = new Scanner(new File(transaction_file_name));
         String custName;
         String nextLine;
         int upc,quantity;
-        ArrayList<LineItem> items;
+        List<LineItem> items;
         Sale s;
         double tender;
         int creditCardNumber;
@@ -111,16 +112,15 @@ public class TransactionReader {
             
         int upc, quantity;
         upc = Integer.parseInt(nextLine.substring(0,4));
-        ProductSpecification productSpec = c.getProduct(upc);
+        ProductImpl productSpec = c.getProduct(upc);
                 
         //check if quantity is specificed
-        if(nextLine.length() > 5)
-        {
+        if(nextLine.length() > 5) {
               quantity = Integer.parseInt(nextLine.substring(9));
         }
-        else
+        else {
             quantity = 1;
-                    
+        }      
                 
         return new LineItem(productSpec, quantity);
     }

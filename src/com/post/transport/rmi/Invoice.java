@@ -3,15 +3,17 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.post.server;
+package com.post.transport.rmi;
 
-import com.post.server.model.Product;
+import java.rmi.RemoteException;
 
 /**
  *
  * @author kumari
  */
-public interface ProductReader {
-    boolean hasNext();
-    Product getNext();
+public interface Invoice {
+
+    String getInvoiceId() throws RemoteException;
+
+    Sale getSale() throws RemoteException;
 }

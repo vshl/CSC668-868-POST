@@ -1,6 +1,6 @@
 package com.post.client;
 
-import com.post.server.ProductSpecification;
+import com.post.server.ProductImpl;
 
 /*
  * To change this template, choose Tools | Templates
@@ -13,10 +13,10 @@ import com.post.server.ProductSpecification;
  * @author ryaneshleman
  */
 public class LineItem {
-    private final ProductSpecification productSpecs;
+    private final ProductImpl productSpecs;
     private final int quantity;
     
-    public LineItem(ProductSpecification productSpecs, int quantity)
+    public LineItem(ProductImpl productSpecs, int quantity)
     {
         this.productSpecs = productSpecs;
         this.quantity = quantity;

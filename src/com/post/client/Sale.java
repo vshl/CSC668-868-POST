@@ -2,7 +2,7 @@ package com.post.client;
 
 
 
-import com.post.server.ProductSpecification;
+import com.post.server.ProductImpl;
 import com.post.client.LineItem;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -35,7 +35,7 @@ public class Sale {
         
     }
     
-    public boolean addLineItem(ProductSpecification productSpecs, int quantity)
+    public boolean addLineItem(ProductImpl productSpecs, int quantity)
     {
         LineItem lineItem = new LineItem(productSpecs, quantity);
         this.lineItems.add(lineItem);
@@ -61,7 +61,7 @@ public class Sale {
      * @param upc
      * @return 
      */
-    public ProductSpecification addItem(int upc)
+    public ProductImpl addItem(int upc)
     {
         throw new UnsupportedOperationException("Not yet implemented");
     }
@@ -102,5 +102,5 @@ public class Sale {
         DecimalFormat df = new DecimalFormat("#.00");
         return Double.valueOf(df.format(value));
     }
-
+    
 }

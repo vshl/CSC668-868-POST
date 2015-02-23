@@ -3,15 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.post.server;
-
-import com.post.server.model.Product;
+package com.post.server.store;
 
 /**
  *
  * @author kumari
  */
-public interface ProductReader {
-    boolean hasNext();
-    Product getNext();
+public class InvoiceStore {
+    
 }

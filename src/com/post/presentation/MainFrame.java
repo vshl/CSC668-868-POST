@@ -5,13 +5,17 @@
  */
 package com.post.presentation;
 
+import com.post.controllers.FrameController;
 import com.post.client.Post;
 import com.post.interfaces.StoreInterface;
 import java.awt.Color;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
+import java.rmi.UnmarshalException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.BorderFactory;
 import javax.swing.border.TitledBorder;
 
@@ -21,11 +25,15 @@ import javax.swing.border.TitledBorder;
  */
 public class MainFrame extends javax.swing.JFrame {
         private StoreInterface store;
+        private FrameController mediator;
+        
+                
+                
     
 	/**
 	 * Creates new form MainFrame
 	 */
-	public MainFrame() {
+	public MainFrame() throws RemoteException {
 		initComponents();
 		this.setTitle("POST terminal");
 		TitledBorder product, invoice, payment;
@@ -36,9 +44,23 @@ public class MainFrame extends javax.swing.JFrame {
 		invoicePanel.setBorder(invoice);
 		paymentPanel.setBorder(payment);
                 
-                initRmi();
+                // if RMI registry is connected properly, pass remote reference
+                // to Mediator
+                if(initRmi())
+                {
+                    Post post = new Post(store);
+                    mediator = new FrameController(post);
+                }    
+                else
+                    mediator = new FrameController(null);
                 
-                Post post = new Post(store);
+                mediator.registerCustomerController(customerPanel1);
+                //mediator.registerDateController(datePanel);
+                mediator.registerInvoiceController(invoicePanel1);
+                mediator.registerPaymentController(paymentPanel1);
+                mediator.registerProductController(productPanel2);
+                
+                
 	}
 
 	/**
@@ -51,194 +73,98 @@ public class MainFrame extends javax.swing.JFrame {
     private void initComponents() {
 
         productPanel = new javax.swing.JPanel();
-        upcLabel = new javax.swing.JLabel();
-        EnterButton = new javax.swing.JToggleButton();
-        upcMenu = new javax.swing.JComboBox();
-        QuantityLabel = new javax.swing.JLabel();
-        quantityMenu = new javax.swing.JComboBox();
+        productPanel2 = new com.post.presentation.ProductPanel();
         customerPanel = new javax.swing.JPanel();
-        CustomerLabel = new javax.swing.JLabel();
-        CustomerField = new javax.swing.JTextField();
+        customerPanel1 = new com.post.presentation.CustomerPanel();
         invoicePanel = new javax.swing.JPanel();
-        invoiceScrollPane = new javax.swing.JScrollPane();
-        invoiceTextArea = new javax.swing.JTextArea();
-        itemLabel = new javax.swing.JLabel();
-        quantityLabel = new javax.swing.JLabel();
-        unitPriceLabel = new javax.swing.JLabel();
-        extendedPriceLabel = new javax.swing.JLabel();
-        totalLabel = new javax.swing.JLabel();
+        invoicePanel1 = new com.post.presentation.InvoicePanel();
         paymentPanel = new javax.swing.JPanel();
-        paymentTypeLabel = new javax.swing.JLabel();
-        paymentTypeMenu = new javax.swing.JComboBox();
-        amountLabel = new javax.swing.JLabel();
-        amountField = new javax.swing.JTextField();
-        payButton = new javax.swing.JButton();
+        paymentPanel1 = new com.post.presentation.PaymentPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
-
-        upcLabel.setText("UPC");
-
-        EnterButton.setText("ENTER");
-
-        upcMenu.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        QuantityLabel.setText("Quantity");
-
-        quantityMenu.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         javax.swing.GroupLayout productPanelLayout = new javax.swing.GroupLayout(productPanel);
         productPanel.setLayout(productPanelLayout);
         productPanelLayout.setHorizontalGroup(
             productPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(productPanelLayout.createSequentialGroup()
-                .addGap(28, 28, 28)
-                .addComponent(upcLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(upcMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(QuantityLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(quantityMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, productPanelLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(EnterButton)
-                .addGap(59, 59, 59))
+            .addGap(0, 416, Short.MAX_VALUE)
+            .addGroup(productPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(productPanelLayout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(productPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 404, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
         productPanelLayout.setVerticalGroup(
             productPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(productPanelLayout.createSequentialGroup()
-                .addGap(30, 30, 30)
-                .addGroup(productPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(upcLabel)
-                    .addComponent(upcMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(QuantityLabel)
-                    .addComponent(quantityMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
-                .addComponent(EnterButton)
-                .addContainerGap())
+            .addGap(0, 158, Short.MAX_VALUE)
+            .addGroup(productPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(productPanelLayout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(productPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(24, Short.MAX_VALUE)))
         );
-
-        CustomerLabel.setText("Customer Name");
-
-        CustomerField.setText("Name");
 
         javax.swing.GroupLayout customerPanelLayout = new javax.swing.GroupLayout(customerPanel);
         customerPanel.setLayout(customerPanelLayout);
         customerPanelLayout.setHorizontalGroup(
             customerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(customerPanelLayout.createSequentialGroup()
-                .addGap(25, 25, 25)
-                .addComponent(CustomerLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(CustomerField, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(73, Short.MAX_VALUE))
+            .addGap(0, 441, Short.MAX_VALUE)
+            .addGroup(customerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(customerPanelLayout.createSequentialGroup()
+                    .addGap(42, 42, 42)
+                    .addComponent(customerPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 338, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(61, Short.MAX_VALUE)))
         );
         customerPanelLayout.setVerticalGroup(
             customerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(customerPanelLayout.createSequentialGroup()
-                .addGap(27, 27, 27)
-                .addGroup(customerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(CustomerLabel)
-                    .addComponent(CustomerField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGap(0, 176, Short.MAX_VALUE)
+            .addGroup(customerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, customerPanelLayout.createSequentialGroup()
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(customerPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
-
-        invoiceTextArea.setColumns(20);
-        invoiceTextArea.setRows(5);
-        invoiceScrollPane.setViewportView(invoiceTextArea);
-
-        itemLabel.setText("ITEM");
-
-        quantityLabel.setText("QTY");
-
-        unitPriceLabel.setText("UNIT_PRICE");
-
-        extendedPriceLabel.setText("EXTENDED_PRICE");
-
-        totalLabel.setText("TOTAL");
 
         javax.swing.GroupLayout invoicePanelLayout = new javax.swing.GroupLayout(invoicePanel);
         invoicePanel.setLayout(invoicePanelLayout);
         invoicePanelLayout.setHorizontalGroup(
             invoicePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(invoicePanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(invoicePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(invoiceScrollPane)
-                    .addGroup(invoicePanelLayout.createSequentialGroup()
-                        .addComponent(itemLabel)
-                        .addGap(234, 234, 234)
-                        .addComponent(quantityLabel)
-                        .addGap(50, 50, 50)
-                        .addComponent(unitPriceLabel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(extendedPriceLabel))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, invoicePanelLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(totalLabel)
-                        .addGap(189, 189, 189))))
+            .addGap(0, 863, Short.MAX_VALUE)
+            .addGroup(invoicePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(invoicePanelLayout.createSequentialGroup()
+                    .addComponent(invoicePanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 857, Short.MAX_VALUE)
+                    .addContainerGap()))
         );
         invoicePanelLayout.setVerticalGroup(
             invoicePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(invoicePanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(invoicePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(itemLabel)
-                    .addComponent(quantityLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(unitPriceLabel)
-                    .addComponent(extendedPriceLabel))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(invoiceScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 244, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(totalLabel)
-                .addContainerGap())
+            .addGap(0, 428, Short.MAX_VALUE)
+            .addGroup(invoicePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(invoicePanelLayout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(invoicePanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 416, Short.MAX_VALUE)
+                    .addContainerGap()))
         );
-
-        paymentTypeLabel.setText("Payment Type");
-
-        paymentTypeMenu.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        amountLabel.setText("Amount");
-
-        amountField.setText("6000");
-
-        payButton.setText("PAY");
 
         javax.swing.GroupLayout paymentPanelLayout = new javax.swing.GroupLayout(paymentPanel);
         paymentPanel.setLayout(paymentPanelLayout);
         paymentPanelLayout.setHorizontalGroup(
             paymentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(paymentPanelLayout.createSequentialGroup()
-                .addGap(18, 18, 18)
-                .addComponent(paymentTypeLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(paymentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(paymentPanelLayout.createSequentialGroup()
-                        .addComponent(paymentTypeMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(amountLabel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(amountField, javax.swing.GroupLayout.DEFAULT_SIZE, 49, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, paymentPanelLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(payButton)
-                        .addGap(86, 86, 86)))
-                .addContainerGap())
+            .addGap(0, 448, Short.MAX_VALUE)
+            .addGroup(paymentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(paymentPanelLayout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(paymentPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
         paymentPanelLayout.setVerticalGroup(
             paymentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(paymentPanelLayout.createSequentialGroup()
-                .addGap(32, 32, 32)
-                .addGroup(paymentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(paymentTypeLabel)
-                    .addComponent(paymentTypeMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(amountLabel)
-                    .addComponent(amountField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
-                .addComponent(payButton)
-                .addContainerGap())
+            .addGap(0, 160, Short.MAX_VALUE)
+            .addGroup(paymentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(paymentPanelLayout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(paymentPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -254,16 +180,18 @@ public class MainFrame extends javax.swing.JFrame {
                     .addComponent(invoicePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(customerPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(productPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(productPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(customerPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(productPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(customerPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(productPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(invoicePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -304,41 +232,31 @@ public class MainFrame extends javax.swing.JFrame {
 		/* Create and display the form */
 		java.awt.EventQueue.invokeLater(new Runnable() {
 			public void run() {
-				new MainFrame().setVisible(true);
+                try {
+                    new MainFrame().setVisible(true);
+                } catch (RemoteException ex) {
+                    Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
+                }
 			}
 		});
 	}
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField CustomerField;
-    private javax.swing.JLabel CustomerLabel;
-    private javax.swing.JToggleButton EnterButton;
-    private javax.swing.JLabel QuantityLabel;
-    private javax.swing.JTextField amountField;
-    private javax.swing.JLabel amountLabel;
     private javax.swing.JPanel customerPanel;
-    private javax.swing.JLabel extendedPriceLabel;
+    private com.post.presentation.CustomerPanel customerPanel1;
     private javax.swing.JPanel invoicePanel;
-    private javax.swing.JScrollPane invoiceScrollPane;
-    private javax.swing.JTextArea invoiceTextArea;
-    private javax.swing.JLabel itemLabel;
-    private javax.swing.JButton payButton;
+    private com.post.presentation.InvoicePanel invoicePanel1;
     private javax.swing.JPanel paymentPanel;
-    private javax.swing.JLabel paymentTypeLabel;
-    private javax.swing.JComboBox paymentTypeMenu;
+    private com.post.presentation.PaymentPanel paymentPanel1;
     private javax.swing.JPanel productPanel;
-    private javax.swing.JLabel quantityLabel;
-    private javax.swing.JComboBox quantityMenu;
-    private javax.swing.JLabel totalLabel;
-    private javax.swing.JLabel unitPriceLabel;
-    private javax.swing.JLabel upcLabel;
-    private javax.swing.JComboBox upcMenu;
+    private com.post.presentation.ProductPanel productPanel2;
     // End of variables declaration//GEN-END:variables
 
-    private void initRmi() {
+    private boolean initRmi() {
         if(System.getSecurityManager() == null)
             System.setSecurityManager(new SecurityManager());
-        
+            
+        //System.setProperty("java.security.policy","file:./permission.policy");
         
         try{
             System.out.println("Finding Registry");
@@ -351,10 +269,19 @@ public class MainFrame extends javax.swing.JFrame {
         catch(RemoteException ex)
         {
             ex.printStackTrace();
+            return false;
         }catch(NotBoundException ex)
         {
             ex.printStackTrace();
+            return false;
+        }catch(Exception ex){
+            ex.printStackTrace();
+            return false;
         }
+        
+        return true;
+        
     }
+
 
 }

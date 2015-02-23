@@ -33,8 +33,8 @@
                   <Component id="invoicePanel" max="32767" attributes="0"/>
                   <Group type="102" attributes="0">
                       <Component id="customerPanel" max="32767" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="productPanel" min="-2" pref="273" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="productPanel" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
@@ -44,9 +44,12 @@
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
-              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Component id="customerPanel" max="32767" attributes="0"/>
-                  <Component id="productPanel" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="customerPanel" min="-2" max="-2" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="productPanel" min="-2" max="-2" attributes="0"/>
+                  </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="invoicePanel" min="-2" max="-2" attributes="0"/>
@@ -63,80 +66,31 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="1" attributes="0">
-                  <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
-                  <Component id="upcLabel" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Component id="upcMenu" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Component id="QuantityLabel" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Component id="quantityMenu" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="32767" attributes="0"/>
-              </Group>
-              <Group type="102" alignment="1" attributes="0">
-                  <EmptySpace max="32767" attributes="0"/>
-                  <Component id="EnterButton" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="59" max="-2" attributes="0"/>
+              <EmptySpace min="0" pref="416" max="32767" attributes="0"/>
+              <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="productPanel2" min="-2" pref="404" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
+                  </Group>
               </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" attributes="0">
-                  <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="upcLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="upcMenu" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="QuantityLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="quantityMenu" alignment="3" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="0" pref="158" max="32767" attributes="0"/>
+              <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="productPanel2" min="-2" pref="128" max="-2" attributes="0"/>
+                      <EmptySpace pref="24" max="32767" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="16" max="32767" attributes="0"/>
-                  <Component id="EnterButton" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JLabel" name="upcLabel">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="UPC"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JToggleButton" name="EnterButton">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="ENTER"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JComboBox" name="upcMenu">
-          <Properties>
-            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="4">
-                <StringItem index="0" value="Item 1"/>
-                <StringItem index="1" value="Item 2"/>
-                <StringItem index="2" value="Item 3"/>
-                <StringItem index="3" value="Item 4"/>
-              </StringArray>
-            </Property>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="QuantityLabel">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Quantity"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JComboBox" name="quantityMenu">
-          <Properties>
-            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="4">
-                <StringItem index="0" value="Item 1"/>
-                <StringItem index="1" value="Item 2"/>
-                <StringItem index="2" value="Item 3"/>
-                <StringItem index="3" value="Item 4"/>
-              </StringArray>
-            </Property>
-          </Properties>
+        <Component class="com.post.presentation.ProductPanel" name="productPanel2">
         </Component>
       </SubComponents>
     </Container>
@@ -145,38 +99,31 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
-                  <Component id="CustomerLabel" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Component id="CustomerField" min="-2" pref="111" max="-2" attributes="0"/>
-                  <EmptySpace pref="73" max="32767" attributes="0"/>
+              <EmptySpace min="0" pref="441" max="32767" attributes="0"/>
+              <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
+                      <Component id="customerPanel1" min="-2" pref="338" max="-2" attributes="0"/>
+                      <EmptySpace pref="61" max="32767" attributes="0"/>
+                  </Group>
               </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="CustomerLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="CustomerField" alignment="3" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="0" pref="176" max="32767" attributes="0"/>
+              <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Component id="customerPanel1" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                   </Group>
-                  <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JLabel" name="CustomerLabel">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Customer Name"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JTextField" name="CustomerField">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Name"/>
-          </Properties>
+        <Component class="com.post.presentation.CustomerPanel" name="customerPanel1">
         </Component>
       </SubComponents>
     </Container>
@@ -185,87 +132,30 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" attributes="0">
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="invoiceScrollPane" max="32767" attributes="0"/>
-                      <Group type="102" attributes="0">
-                          <Component id="itemLabel" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="234" max="-2" attributes="0"/>
-                          <Component id="quantityLabel" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
-                          <Component id="unitPriceLabel" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="32767" attributes="0"/>
-                          <Component id="extendedPriceLabel" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="1" attributes="0">
-                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                          <Component id="totalLabel" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="189" max="-2" attributes="0"/>
-                      </Group>
+              <EmptySpace min="0" pref="863" max="32767" attributes="0"/>
+              <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="invoicePanel1" pref="857" max="32767" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" attributes="0">
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="itemLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="quantityLabel" alignment="3" min="-2" pref="16" max="-2" attributes="0"/>
-                      <Component id="unitPriceLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="extendedPriceLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="0" pref="428" max="32767" attributes="0"/>
+              <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="invoicePanel1" pref="416" max="32767" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Component id="invoiceScrollPane" pref="244" max="32767" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Component id="totalLabel" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Container class="javax.swing.JScrollPane" name="invoiceScrollPane">
-          <AuxValues>
-            <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
-          </AuxValues>
-
-          <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
-          <SubComponents>
-            <Component class="javax.swing.JTextArea" name="invoiceTextArea">
-              <Properties>
-                <Property name="columns" type="int" value="20"/>
-                <Property name="rows" type="int" value="5"/>
-              </Properties>
-            </Component>
-          </SubComponents>
-        </Container>
-        <Component class="javax.swing.JLabel" name="itemLabel">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="ITEM"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="quantityLabel">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="QTY"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="unitPriceLabel">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="UNIT_PRICE"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="extendedPriceLabel">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="EXTENDED_PRICE"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="totalLabel">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="TOTAL"/>
-          </Properties>
+        <Component class="com.post.presentation.InvoicePanel" name="invoicePanel1">
         </Component>
       </SubComponents>
     </Container>
@@ -274,77 +164,31 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
-                  <Component id="paymentTypeLabel" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" attributes="0">
-                          <Component id="paymentTypeMenu" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="amountLabel" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="amountField" pref="49" max="32767" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="1" attributes="0">
-                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                          <Component id="payButton" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="86" max="-2" attributes="0"/>
-                      </Group>
+              <EmptySpace min="0" pref="448" max="32767" attributes="0"/>
+              <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      <Component id="paymentPanel1" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
-                  <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="paymentTypeLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="paymentTypeMenu" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="amountLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="amountField" alignment="3" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="0" pref="160" max="32767" attributes="0"/>
+              <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      <Component id="paymentPanel1" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="29" max="32767" attributes="0"/>
-                  <Component id="payButton" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JLabel" name="paymentTypeLabel">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Payment Type"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JComboBox" name="paymentTypeMenu">
-          <Properties>
-            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="4">
-                <StringItem index="0" value="Item 1"/>
-                <StringItem index="1" value="Item 2"/>
-                <StringItem index="2" value="Item 3"/>
-                <StringItem index="3" value="Item 4"/>
-              </StringArray>
-            </Property>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="amountLabel">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Amount"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JTextField" name="amountField">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="6000"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JButton" name="payButton">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="PAY"/>
-          </Properties>
+        <Component class="com.post.presentation.PaymentPanel" name="paymentPanel1">
         </Component>
       </SubComponents>
     </Container>

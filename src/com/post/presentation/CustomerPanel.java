@@ -5,18 +5,26 @@
  */
 package com.post.presentation;
 
+import com.post.controllers.CustomerController;
+
 /**
  *
  * @author Sammy
  */
 public class CustomerPanel extends javax.swing.JPanel {
-
+        CustomerController controller;
+    
 	/**
 	 * Creates new form customerPanel
 	 */
 	public CustomerPanel() {
 		initComponents();
 	}
+        
+        public void registerController(CustomerController controller)
+        {
+            this.controller = controller;
+        }        
 
 	/**
 	 * This method is called from within the constructor to initialize the form.

@@ -59,16 +59,16 @@ public class TransactionReader {
             if(nextLine.contains("CASH"))
             {
                 tender = Double.parseDouble(nextLine.substring(7).replace(">",""));
-                s.makeCashPayment(tender);
+               // s.makeCashPayment(tender);
             }
             else if(nextLine.contains("CHECK"))
             {
-                 s.makeCheckPayment();
+                 //s.makeCheckPayment();
             }        
             else //process credit card
             {
                 creditCardNumber = Integer.parseInt(nextLine.substring(8,13));
-                s.makeCreditCardPayment(creditCardNumber);
+                //s.makeCreditCardPayment(creditCardNumber);
             }
             transactions.add(s);
             

@@ -2,12 +2,12 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.post.presentation;
+package com.post.controllers;
 
 /**
  *
  * @author ryaneshleman
  */
-public class FrameController {
+public class DateController {
     
 }

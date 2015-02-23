@@ -5,19 +5,25 @@
  */
 package com.post.presentation;
 
+import com.post.controllers.PaymentController;
+
 /**
  *
  * @author Sammy
  */
 public class PaymentPanel extends javax.swing.JPanel {
-
+        PaymentController controller;
 	/**
 	 * Creates new form paymentPanel
 	 */
 	public PaymentPanel() {
 		initComponents();
 	}
-
+        
+        public void registerController(PaymentController controller)
+        {
+            this.controller = controller;
+        }
 	/**
 	 * This method is called from within the constructor to initialize the form.
 	 * WARNING: Do NOT modify this code. The content of this method is always

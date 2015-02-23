@@ -39,9 +39,9 @@ public class Post {
      */
     public static void main(String[] args) throws FileNotFoundException, Exception {
 
-        Post post = new Post();
-        post.init();
-
+        //Post post = new Post();
+        //post.init();
+/*
         TransactionReader tr = new TransactionReader(post.getCatalog(), TRANSACTIONS_FILE);
 
         Sale s;
@@ -51,7 +51,7 @@ public class Post {
             post.addSale(s);
 
         }
-
+       */
     }
     /**
      * Retrieves invoice from Sale object
@@ -152,9 +152,9 @@ public class Post {
         throw new UnsupportedOperationException("Not yet implemented");
     }
     
-    public Catalog getCatalog() {
-        return catalog;
-    }
+    //public Catalog getCatalog() {
+    //    return catalog;
+    //}
 
     private void addSale(Sale s) {
         this.sales.add(s);

@@ -104,4 +104,16 @@ public class Sale {
         return Double.valueOf(df.format(value));
     }
 
+    void makeCashPayment(double amount) {
+        throw new UnsupportedOperationException("Not yet implemented");
+    }
+
+    void makeCheckPayment() {
+        throw new UnsupportedOperationException("Not yet implemented");
+    }
+
+    void makeCreditCardPayment(int cardNumber) {
+        throw new UnsupportedOperationException("Not yet implemented");
+    }
+
 }

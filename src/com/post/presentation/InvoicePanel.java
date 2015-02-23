@@ -5,12 +5,15 @@
  */
 package com.post.presentation;
 
+import com.post.controllers.InvoiceController;
+
 /**
  *
  * @author Sammy
  */
 public class InvoicePanel extends javax.swing.JPanel {
-
+        InvoiceController controller;
+    
 	/**
 	 * Creates new form invoicePanel
 	 */
@@ -18,6 +21,10 @@ public class InvoicePanel extends javax.swing.JPanel {
 		initComponents();
 	}
 
+        public void registerController(InvoiceController controller)
+        {
+            this.controller = controller;
+        }
 	/**
 	 * This method is called from within the constructor to initialize the form.
 	 * WARNING: Do NOT modify this code. The content of this method is always

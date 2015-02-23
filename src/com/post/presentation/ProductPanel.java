@@ -5,6 +5,7 @@
  */
 package com.post.presentation;
 
+import com.post.controllers.ProductController;
 import java.awt.Color;
 import javax.swing.BorderFactory;
 import javax.swing.border.TitledBorder;
@@ -14,13 +15,18 @@ import javax.swing.border.TitledBorder;
  * @author Sammy
  */
 public class ProductPanel extends javax.swing.JPanel {
-
+        ProductController controller;
 	/**
 	 * Creates new form ProductPanel
 	 */
 	public ProductPanel() {
 		initComponents();
 	}
+        
+        public void registerController(ProductController controller)
+        {
+            this.controller = controller;
+        }
         
 	/**
 	 * This method is called from within the constructor to initialize the form.
@@ -91,11 +97,11 @@ public class ProductPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void upcComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_upcComboBoxActionPerformed
-        // TODO add your handling code here:
+        System.out.println("Other Thing Happened");
     }//GEN-LAST:event_upcComboBoxActionPerformed
 
     private void enterButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enterButtonActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_enterButtonActionPerformed
 
 

@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- *
+ *  
  * @author kumari
  */
 public class ProductStoreHashImpl implements ProductStore {
@@ -31,7 +31,7 @@ public class ProductStoreHashImpl implements ProductStore {
         prodMap.put(product.getUpc(), product);
     }
 
-     /*
+    /*
     Removes product from hashmap
     */
     @Override

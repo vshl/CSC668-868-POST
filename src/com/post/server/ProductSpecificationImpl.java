@@ -1,6 +1,6 @@
 package com.post.server;
 
-import com.post.transport.rmi.Product;
+import com.post.transport.rmi.ProductSpecification;
 import java.rmi.RemoteException;
 
 /*
@@ -12,7 +12,7 @@ import java.rmi.RemoteException;
  *  Holds information about the given product.
  * @author ryaneshleman
  */
-public class ProductImpl implements Product{
+public class ProductSpecificationImpl implements ProductSpecification{
     private String upc;
     private String description;
     private double price;
@@ -23,7 +23,7 @@ public class ProductImpl implements Product{
      * @param description
      * @param price 
      */
-    public ProductImpl(String upc, double price, String description)
+    public ProductSpecificationImpl(String upc, double price, String description)
     {
         this.upc = upc;
         this.price = price;

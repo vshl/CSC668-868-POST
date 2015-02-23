@@ -10,7 +10,7 @@ import java.rmi.RemoteException;
 import java.util.List;
 
 /**
- *
+ * This would be implemented by client side
  * @author kumari
  */
 public interface Sale extends Remote {

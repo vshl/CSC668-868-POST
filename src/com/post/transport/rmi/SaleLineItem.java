@@ -9,13 +9,20 @@ import java.rmi.Remote;
 import java.rmi.RemoteException;
 
 /**
- *
+ * This would be implemented by client side
  * @author kumari
  */
 public interface SaleLineItem extends Remote {
 
-    Product getProduct() throws RemoteException;
+    ProductSpecification getProduct() throws RemoteException;
+    
     int getItemCount() throws RemoteException;
+    
+    /**
+     * This is result of product price * item count
+     * @return
+     * @throws RemoteException 
+     */
     double getSubTotal() throws RemoteException;
     
 }

@@ -7,16 +7,34 @@ package com.post.transport.rmi;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
-import java.util.List;
 
 /**
- *
+ *This is responsible for generating catalog, checking authorization and 
+ * generating invoice
  * @author kumari
  */
 public interface PostManager extends Remote {
+    /**
+     * Returns product catalog which consists of product information
+     * @return
+     * @throws RemoteException 
+     */
+    Catalog getCatalog() throws RemoteException; 
     
-    List<Product> getCatalog() throws RemoteException; // list of products or catalog
-    boolean isAuthorized(Payment payment) throws RemoteException; // payment aauthorization	
-    Invoice saveSale(Sale sale) throws RemoteException; // generating invoice
+    /**
+     * Checks payment authorization and return result to client
+     * @param payment
+     * @return
+     * @throws RemoteException 
+     */
+    boolean isAuthorized(Payment payment) throws RemoteException;
+    
+    /**
+     * Generates invoice with all sale details
+     * @param sale
+     * @return
+     * @throws RemoteException 
+     */
+    Invoice saveSale(Sale sale) throws RemoteException; 
     
 }

@@ -6,11 +6,10 @@
 package com.post.transport.rmi;
 
 /**
- *
+ * 
  * @author kumari
  */
 public enum PaymentType {
-
     CASH,
     CREDIT,
     CHECK

@@ -5,15 +5,17 @@
  */
 package com.post.server.model;
 
-import com.post.server.ProductImpl;
+import com.post.server.ProductSpecificationImpl;
 
 /**
  *
- * This class keeps model object. It will be used  only by server.
- * Although it looks like similar implementation to transport class but
- * a separate model class is required.
- * This model class may know about transport but not vice versa.
+ *  This class keeps model object. It will be used  only by server.
+ *  Although it looks like similar implementation to transport class but
+ *  a separate model class is required. It is done in order to separate responsibilities
+ *  between model class and transport interfaces.
+ *  This model class may know about transport but not vice versa.
  * 
+ * @author kumari
  */
 public class Product {
     private String upc;
@@ -59,7 +61,7 @@ public class Product {
      * converts model object into transport object
      * @return transport product object
      */
-    public com.post.transport.rmi.Product convertToTransport(){
-        return new ProductImpl(this.upc, this.price, this.description);
+    public com.post.transport.rmi.ProductSpecification convertToTransport(){
+        return new ProductSpecificationImpl(this.upc, this.price, this.description);
     }
 }

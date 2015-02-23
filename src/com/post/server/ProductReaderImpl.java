@@ -14,8 +14,8 @@ import java.util.*;
 /**
  * @author Eric Chu
  */
-class ProductReaderImpl implements ProductReader {
-
+public class ProductReaderImpl implements ProductReader {
+    // this product belongs to model class
     private List<Product> products;
     private int currentIteratorIndex;
 
@@ -25,10 +25,10 @@ class ProductReaderImpl implements ProductReader {
      * text file and assigns specific parts to its respective variables such as
      * UPC, description and price.
      *
-     * @param prodcts_file
+     * @param productsFile
      * @throws IOException
      */
-    ProductReaderImpl(String prodcts_file) throws IOException {
+    public ProductReaderImpl(String productsFile) throws IOException {
 
         products = new ArrayList<Product>();
         currentIteratorIndex = 0;
@@ -44,7 +44,7 @@ class ProductReaderImpl implements ProductReader {
         try {
             //reads in the products.txt from POST class
             String line;
-            br = new BufferedReader(new FileReader(prodcts_file));
+            br = new BufferedReader(new FileReader(productsFile));
 
             //goes line by line to extract the data
             while ((line = br.readLine()) != null) {

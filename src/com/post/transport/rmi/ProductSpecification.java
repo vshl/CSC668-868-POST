@@ -9,13 +9,17 @@ import java.rmi.Remote;
 import java.rmi.RemoteException;
 
 /**
- *
+ * This keeps information about remote product object which is used for 
+ * client-server communication
+ * 
  * @author kumari
  */
-public interface Product extends Remote {
+public interface ProductSpecification extends Remote {
 
     String getUpc() throws RemoteException;
+    
     double getPrice() throws RemoteException;
+    
     String Description() throws RemoteException;
 
 }

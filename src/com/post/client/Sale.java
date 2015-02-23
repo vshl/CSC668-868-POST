@@ -3,7 +3,6 @@ package com.post.client;
 
 
 import com.post.transport.rmi.ProductSpecification;
-import com.post.interfaces.ProductSpecificationInterface;
 import com.post.transport.rmi.SaleLineItem;
 import java.rmi.RemoteException;
 import java.text.DecimalFormat;

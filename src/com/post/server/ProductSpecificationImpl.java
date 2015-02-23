@@ -1,6 +1,7 @@
 package com.post.server;
 
 import com.post.transport.rmi.ProductSpecification;
+import java.io.Serializable;
 import java.rmi.RemoteException;
 
 /*
@@ -12,7 +13,7 @@ import java.rmi.RemoteException;
  *  Holds information about the given product.
  * @author ryaneshleman
  */
-public class ProductSpecificationImpl implements ProductSpecification{
+public class ProductSpecificationImpl implements ProductSpecification,Serializable{
     private String upc;
     private String description;
     private double price;

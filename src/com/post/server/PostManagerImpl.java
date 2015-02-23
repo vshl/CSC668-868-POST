@@ -13,7 +13,9 @@ import com.post.transport.rmi.Payment;
 import com.post.transport.rmi.PostManager;
 import com.post.transport.rmi.ProductSpecification;
 import com.post.transport.rmi.Sale;
+import java.io.Serializable;
 import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -23,12 +25,12 @@ import java.util.UUID;
  *
  * @author kumari
  */
-public class PostManagerImpl implements PostManager {
+public class PostManagerImpl extends UnicastRemoteObject implements PostManager,Serializable {
     // this productStore stores product of model class
     private ProductStore productStore;
     
 
-    public PostManagerImpl() {
+    public PostManagerImpl() throws java.rmi.RemoteException{
         productStore = new ProductStoreHashImpl();
     }
     /**

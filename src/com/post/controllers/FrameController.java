@@ -5,11 +5,11 @@
 package com.post.controllers;
 
 import com.post.client.Post;
-import com.post.interfaces.StoreInterface;
 import com.post.presentation.CustomerPanel;
 import com.post.presentation.InvoicePanel;
 import com.post.presentation.PaymentPanel;
 import com.post.presentation.ProductPanel;
+import com.post.transport.rmi.PostManager;
 import javax.swing.JPanel;
 
 /**
@@ -17,7 +17,7 @@ import javax.swing.JPanel;
  * @author ryaneshleman
  */
 public class FrameController {
-        private StoreInterface store;
+        private PostManager store;
         private CustomerController customerController;
         private DateController dateController;
         private PaymentController paymentController;

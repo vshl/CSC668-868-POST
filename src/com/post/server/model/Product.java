@@ -6,6 +6,7 @@
 package com.post.server.model;
 
 import com.post.server.ProductSpecificationImpl;
+import java.io.Serializable;
 
 /**
  *
@@ -17,7 +18,7 @@ import com.post.server.ProductSpecificationImpl;
  * 
  * @author kumari
  */
-public class Product {
+public class Product implements Serializable {
     private String upc;
     private double price;
     private String description;

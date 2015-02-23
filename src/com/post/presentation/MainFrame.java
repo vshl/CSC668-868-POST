@@ -7,7 +7,7 @@ package com.post.presentation;
 
 import com.post.controllers.FrameController;
 import com.post.client.Post;
-import com.post.interfaces.StoreInterface;
+import com.post.transport.rmi.PostManager;
 import java.awt.Color;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
@@ -24,7 +24,7 @@ import javax.swing.border.TitledBorder;
  * @author Sammy
  */
 public class MainFrame extends javax.swing.JFrame {
-        private StoreInterface store;
+        private PostManager store;
         private FrameController mediator;
         
                 
@@ -263,7 +263,7 @@ public class MainFrame extends javax.swing.JFrame {
             Registry rmtReg = LocateRegistry.getRegistry();
             
             System.out.println("Binding remote reference to StoreInterface");
-             this.store = (StoreInterface)rmtReg.lookup("store");
+             this.store = (PostManager)rmtReg.lookup("postManagerServer");
            
         }
         catch(RemoteException ex)

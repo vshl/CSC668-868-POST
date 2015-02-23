@@ -19,7 +19,7 @@ import java.rmi.registry.Registry;
 
 public class ServerReg  {
     
-    private final static String PRODUCT_SPEC_FILE = "./products.txt";
+    private final static String PRODUCT_SPEC_FILE = "./com/post/server/products.txt";
     
     public static void main(String args[]){
         String productFileName = PRODUCT_SPEC_FILE;

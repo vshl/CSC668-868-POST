@@ -7,6 +7,7 @@ package com.post.server;
 
 import com.post.transport.rmi.Catalog;
 import com.post.transport.rmi.ProductSpecification;
+import java.io.Serializable;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.List;
@@ -16,7 +17,7 @@ import java.util.Map;
  *
  * @author kumari
  */
-public class CatalogImpl implements Catalog {
+public class CatalogImpl implements Catalog,Serializable {
     
     private Map<String, ProductSpecification> catalogMap;
     

@@ -5,9 +5,8 @@ package com.post.client;
  * and open the template in the editor.
  */
 
-import com.post.interfaces.CatalogInterface;
-import com.post.interfaces.ProductSpecificationInterface;
-import com.post.interfaces.StoreInterface;
+import com.post.transport.rmi.Catalog;
+import com.post.transport.rmi.PostManager;
 import com.post.transport.rmi.ProductSpecification;
 import com.post.transport.rmi.SaleLineItem;
 import java.io.FileNotFoundException;
@@ -25,9 +24,9 @@ public class Post {
 
     private final static String PRODUCT_SPEC_FILE = "./products.txt";
     private final static String TRANSACTIONS_FILE = "./transactions.txt";
-    private static       CatalogInterface catalog;
+    private static       Catalog catalog;
     private boolean isReady = false;
-    private StoreInterface store;
+    private PostManager store;
 
     private List<Sale> sales = new ArrayList<Sale>();
 
@@ -69,7 +68,7 @@ public class Post {
      * which it will request the catalog
      * @param store 
      */
-    public Post(StoreInterface store) throws RemoteException
+    public Post(PostManager store) throws RemoteException
     {
         this.store = store;
         this.catalog = store.getCatalog();

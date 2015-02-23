@@ -1,34 +1,40 @@
+package com.post.client;
+
+import com.post.transport.rmi.Payment;
+import com.post.transport.rmi.PaymentType;
+import java.rmi.RemoteException;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor
  */
 
-public class CashPayment extends Payment{
+public class CashPayment implements Payment{
+    private double amount;
 
-    private String payType;
-    private double  amountDue = 0;
-    private double changeDue = 0;
-    private double amountTendered = 0;
-    private boolean isComplete = false;
-    /**
-     * Completes cash payment, returns amount due
-     * throws exception is not enough money
-     * @param amountTendered
-     * @return
-     * @throws Exception 
-     */
-    public double makeCashPayment(double amountTendered) throws Exception
-    {
-        this.amountTendered = amountTendered;
-        // ignoring corner case when amountTendered < amountDue
-        if(amountTendered < amountDue)
-            throw new Exception("You didn't pay enough, you cheapskate!");
-        
-        changeDue = amountTendered - amountDue;
-        isComplete = true;
-        payType = "CASH";
-        return changeDue;
+    public CashPayment(double amount) {
+        this.amount = amount;
+    }
+
+    @Override
+    public PaymentType getPaymentType() throws RemoteException {
+        return PaymentType.CASH;
+    }
+
+    @Override
+    public double getAmount() throws RemoteException {
+        return this.amount;
+    }
+
+    @Override
+    public String getCardNumber() throws RemoteException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public String toString() {
+        return "CashPayment{" + "amount=" + amount + '}';
     }
     
 }

@@ -2,9 +2,10 @@ package com.post.client;
 
 
 
-import com.post.server.ProductSpecification;
-import com.post.client.LineItem;
+import com.post.transport.rmi.ProductSpecification;
 import com.post.interfaces.ProductSpecificationInterface;
+import com.post.transport.rmi.SaleLineItem;
+import java.rmi.RemoteException;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -25,7 +26,7 @@ public class Sale {
     private int     numItems = 0;
     private Date    date;
     
-    ArrayList<LineItem> lineItems = new ArrayList<LineItem>();
+    ArrayList<SaleLineItem> lineItems = new ArrayList<SaleLineItem>();
     
     
 
@@ -36,21 +37,21 @@ public class Sale {
         
     }
     
-    public boolean addLineItem(ProductSpecificationInterface productSpecs, int quantity)
+    public boolean addLineItem(ProductSpecification productSpecs, int quantity)
     {
-        LineItem lineItem = new LineItem(productSpecs, quantity);
+        SaleLineItem lineItem = new SaleLineItemImpl(productSpecs, quantity);
         this.lineItems.add(lineItem);
         return true;
     }
     
-    public boolean initiateSale(String custName, ArrayList<LineItem> lineItems)
+    public boolean initiateSale(String custName, ArrayList<SaleLineItem> lineItems) throws RemoteException
     {
        this.custName = custName;
        this.lineItems = lineItems;
        this.date = new Date();
-       for(LineItem li : lineItems)
+       for(SaleLineItem li : lineItems)
        {
-           amountDue += li.getQuantity() * li.getItemUnitCost();
+           amountDue += li.getSubTotal();
        }
        totalCost += amountDue;
        
@@ -67,16 +68,16 @@ public class Sale {
         throw new UnsupportedOperationException("Not yet implemented");
     }
     
-    public String generateInvoice()
+    public String generateInvoice() throws RemoteException
     {
         String invoice = "Welcome To Cornnut Emporium!\n\n";
         invoice += String.format("Customer Name: %10s %5s %s\n", this.custName, ' ', this.date);
-        for(LineItem li : lineItems)
+        for(SaleLineItem li : lineItems)
         {
-            invoice += String.format("Item: %-20s %3d @ %8.2f subtotal:  %8.2f",li.getProductDescription(),
-                                                                   li.getQuantity(),
-                                                                   li.getItemUnitCost(),
-                                                                   li.getItemUnitCost() * li.getQuantity())
+            invoice += String.format("Item: %-20s %3d @ %8.2f subtotal:  %8.2f",li.getProduct(),
+                                                                   li.getItemCount(),
+                                                                   li.getProduct().getPrice(),
+                                                                   li.getSubTotal())
                                                                    + "\n";
         }
         invoice += "-------";

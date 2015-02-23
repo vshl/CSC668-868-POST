@@ -8,7 +8,8 @@ package com.post.client;
 import com.post.interfaces.CatalogInterface;
 import com.post.interfaces.ProductSpecificationInterface;
 import com.post.interfaces.StoreInterface;
-import com.post.server.Catalog;
+import com.post.transport.rmi.ProductSpecification;
+import com.post.transport.rmi.SaleLineItem;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.rmi.RemoteException;
@@ -58,7 +59,7 @@ public class Post {
      * prints to stdout
      * @param s 
      */
-    private static void printInvoice(Sale s) {
+    private static void printInvoice(Sale s) throws RemoteException {
         System.out.println(s.generateInvoice());
     }
 
@@ -106,14 +107,14 @@ public class Post {
         throw new UnsupportedOperationException("Not yet implemented");
     }
 
-    public boolean addLineItem(ProductSpecificationInterface productSpecs, int quantity)
+    public boolean addLineItem(ProductSpecification productSpecs, int quantity)
     {
         Sale s = new Sale();
         s.addLineItem(productSpecs, quantity);
         return true;    
     }
     
-    public Sale initiateSale(String custName, ArrayList<LineItem> lineItems)
+    public Sale initiateSale(String custName, ArrayList<SaleLineItem> lineItems) throws RemoteException
     {
         Sale s = new Sale();
         s.initiateSale(custName, lineItems);

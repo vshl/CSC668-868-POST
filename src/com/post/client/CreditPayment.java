@@ -1,30 +1,37 @@
+package com.post.client;
 
-public class CreditPayment extends Payment {
+import com.post.transport.rmi.Payment;
+import com.post.transport.rmi.PaymentType;
+import java.rmi.RemoteException;
 
-    private String payType;
-    private double  amountDue = 0;
-    private double changeDue = 0;
-    private double amountTendered = 0;
-    private boolean isComplete = false;
-    
-        public boolean makeCreditCardPayment(int cardNumber)
-    {
-        if(Math.random() >=1)//denied
-        {
-        	payType = "CREDIT DENIED";
-            return false;
-        }
-        else
-        {
-            this.amountTendered = amountDue;
-            amountDue = 0;
-            isComplete = true;
-            payType = "CREDIT";
-        }
-        
-        
-        
-        return isComplete;
+public class CreditPayment implements Payment {
+    double amount;
+    String cardNumber;
+
+    public CreditPayment(double amount, String cardNumber) {
+        this.amount = amount;
+        this.cardNumber = cardNumber;
     }
-    
+
+    @Override
+    public PaymentType getPaymentType() throws RemoteException {
+        return PaymentType.CREDIT;
+    }
+
+    @Override
+    public double getAmount() throws RemoteException {
+        return this.amount;
+    }
+
+    @Override
+    public String getCardNumber() throws RemoteException {
+        return this.cardNumber;
+        
+    }
+
+    @Override
+    public String toString() {
+        return "CreditPayment{" + "amount=" + amount + ", cardNumber=" + cardNumber + '}';
+    }
+
 }

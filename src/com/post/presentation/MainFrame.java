@@ -5,7 +5,7 @@
  */
 package com.post.presentation;
 
-import com.post.client.Post;
+//import com.post.client.Post;
 import com.post.interfaces.StoreInterface;
 import java.awt.Color;
 import java.rmi.NotBoundException;
@@ -38,7 +38,7 @@ public class MainFrame extends javax.swing.JFrame {
                 
                 initRmi();
                 
-                Post post = new Post(store);
+                //Post post = new Post(store);
 	}
 
 	/**

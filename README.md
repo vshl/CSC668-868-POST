@@ -1,7 +1,7 @@
 # CSC668-868-POST
 Project repo for SFSU CSC668/868
 
-compile src:
+compile src from src/ directory:
 *  javac com/post/registry/ServerReg.java
 *  javac com/post/server/ProductReader.java
 *  javac com/post/server/PostManagerImpl.java

@@ -17,7 +17,7 @@ import java.util.Map;
  *
  * @author kumari
  */
-public class CatalogImpl implements Catalog,Serializable {
+public class CatalogImpl implements Catalog, Serializable {
     
     private Map<String, ProductSpecification> catalogMap;
     

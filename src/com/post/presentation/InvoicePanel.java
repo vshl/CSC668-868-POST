@@ -110,4 +110,15 @@ public class InvoicePanel extends javax.swing.JPanel {
     private javax.swing.JLabel totalPriceLabel;
     private javax.swing.JLabel unitPriceLabel;
     // End of variables declaration//GEN-END:variables
+
+    public void writeToTextArea(String str) {
+        invoiceTextArea.append(str);
+    }
+    
+    public void updateTotal(String str)
+    {
+    // TODO update invoice panel total
+    }        
+
+    
 }

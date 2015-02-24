@@ -9,6 +9,8 @@ import com.post.transport.rmi.Catalog;
 import com.post.transport.rmi.PostManager;
 import com.post.transport.rmi.ProductSpecification;
 import com.post.transport.rmi.SaleLineItem;
+import com.post.transport.rmi.Payment;
+import com.post.transport.rmi.Sale;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.rmi.RemoteException;
@@ -24,7 +26,15 @@ public class Post {
 
     private final static String PRODUCT_SPEC_FILE = "./products.txt";
     private final static String TRANSACTIONS_FILE = "./transactions.txt";
-    private static       Catalog catalog;
+    private        Catalog catalog;
+    private Sale currentSale;
+
+    /**
+     * @return the catalog
+     */
+    public  Catalog getCatalog() {
+        return catalog;
+    }
     private boolean isReady = false;
     private PostManager store;
 
@@ -58,10 +68,11 @@ public class Post {
      * prints to stdout
      * @param s 
      */
+    /*
     private static void printInvoice(Sale s) throws RemoteException {
         System.out.println(s.generateInvoice());
     }
-
+    */
     
     /**
      * The Post constructor is passed a reference to the remote Store object from
@@ -88,6 +99,8 @@ public class Post {
         //throw new UnsupportedOperationException("Not yet implemented");
     }
     */
+    
+    
     public boolean shutDown() {
         isReady = false;
         return isReady;
@@ -102,22 +115,21 @@ public class Post {
      * @param s
      * @return
      */
-    public boolean recordSale(Sale s) {
-        throw new UnsupportedOperationException("Not yet implemented");
+    public void recordCurrentSale() throws RemoteException {
+        this.store.saveSale(currentSale);
     }
 
-    public boolean addLineItem(ProductSpecification productSpecs, int quantity)
+    public boolean addLineItem(SaleLineItem lineItem)throws RemoteException
     {
-        Sale s = new Sale();
-        s.addLineItem(productSpecs, quantity);
+        currentSale.addLineItem(lineItem);
         return true;    
     }
     
-    public Sale initiateSale(String custName, ArrayList<SaleLineItem> lineItems) throws RemoteException
+    public void initiateSale() throws RemoteException
     {
-        Sale s = new Sale();
-        s.initiateSale(custName, lineItems);
-        return s;
+        Sale s = new SaleImpl();
+        //s.initiateSale(custName);
+        this.currentSale = s;
     }
     
     /**
@@ -129,16 +141,9 @@ public class Post {
      * @return
      * @throws Exception 
      */
-    public Sale makePayment(Sale s, String paymentMethod, double amount, int cardNumber) throws Exception
+    public void makePayment(Payment payment) throws Exception
     {
-        if(paymentMethod.equals("CASH"))
-            s.makeCashPayment(amount);
-        else if(paymentMethod.equals("CHECK"))
-            s.makeCheckPayment();
-        else 
-            s.makeCreditCardPayment(cardNumber);
-        return s;
-        
+        this.currentSale.makePayment(payment);
             
     }        
     
@@ -158,5 +163,12 @@ public class Post {
 
     private void addSale(Sale s) {
         this.sales.add(s);
+    }
+
+    /**
+     * @return the currentSale
+     */
+    public Sale getCurrentSale() {
+        return currentSale;
     }
 }

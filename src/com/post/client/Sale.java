@@ -31,31 +31,23 @@ public class Sale {
 
     public Sale()
     {
-        //this.catalog = catalog;
-        //TODO
+        
         
     }
     
-    public boolean addLineItem(ProductSpecification productSpecs, int quantity)
-    {
-        SaleLineItem lineItem = new SaleLineItemImpl(productSpecs, quantity);
-        this.lineItems.add(lineItem);
-        return true;
-    }
+
     
-    public boolean initiateSale(String custName, ArrayList<SaleLineItem> lineItems) throws RemoteException
+    public void addLineItem(SaleLineItem lineItem) throws RemoteException
+    {
+        this.lineItems.add(lineItem);
+        amountDue += lineItem.getSubTotal();
+        totalCost += lineItem.getSubTotal();
+    }        
+    
+    public void setCustName(String custName) throws RemoteException
     {
        this.custName = custName;
-       this.lineItems = lineItems;
-       this.date = new Date();
-       for(SaleLineItem li : lineItems)
-       {
-           amountDue += li.getSubTotal();
-       }
-       totalCost += amountDue;
-       
-       this.lineItems.addAll(lineItems);
-       return true;
+     
     }
     /**
      * Incomplete, will build out if required later.

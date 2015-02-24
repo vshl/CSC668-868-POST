@@ -9,6 +9,7 @@ import com.post.transport.rmi.Payment;
 import com.post.transport.rmi.Sale;
 import com.post.transport.rmi.SaleLineItem;
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -16,9 +17,9 @@ import java.util.List;
  * @author kumari
  */
 public class SaleImpl implements Sale {
-    private final String customerName;
-    private final List<SaleLineItem> saleLineItems;
-    private final Payment payment;
+    private  String customerName;
+    private  List<SaleLineItem> saleLineItems;
+    private  Payment payment;
     
     
     public SaleImpl(String customerName,
@@ -28,6 +29,13 @@ public class SaleImpl implements Sale {
         this.saleLineItems = saleLineItems;
          this.payment = payment;
     }
+    
+    public SaleImpl()
+    {
+        this.customerName = "";
+        saleLineItems = new ArrayList<SaleLineItem>();
+        //Default Constructor
+    }        
 
     @Override
     public Payment getPayment() throws RemoteException {
@@ -59,4 +67,14 @@ public class SaleImpl implements Sale {
     public String toString() {
         return "SaleImpl{" + "customerName=" + customerName + ", saleLineItems=" + saleLineItems + ", payment=" + payment + '}';
     }
+    
+    public void addLineItem(SaleLineItem lineItem)
+    {
+        this.saleLineItems.add(lineItem);
+    }
+    
+    public void makePayment(Payment payment)
+    {
+        this.payment = payment;
+    }        
 }

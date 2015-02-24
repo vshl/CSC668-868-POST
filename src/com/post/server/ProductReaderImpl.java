@@ -39,8 +39,7 @@ public class ProductReaderImpl implements ProductReader {
         double amount;
 
         BufferedReader br = null;
-        //TODO: implementation should never be in constructor. While loop logic  
-        //should be in getNextProduct().
+        
         try {
             //reads in the products.txt from POST class
             String line;

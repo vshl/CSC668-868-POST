@@ -6,7 +6,12 @@
 package com.post.presentation;
 
 import com.post.controllers.ProductController;
+import com.post.transport.rmi.ProductSpecification;
 import java.awt.Color;
+import java.rmi.RemoteException;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.BorderFactory;
 import javax.swing.border.TitledBorder;
 
@@ -101,7 +106,13 @@ public class ProductPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_upcComboBoxActionPerformed
 
     private void enterButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enterButtonActionPerformed
-        
+        String upc = (String)upcComboBox.getSelectedItem();
+        Integer quantity = (Integer)quantitySpinner.getValue();
+            try {
+                controller.addLineItem(upc,quantity);
+            } catch (RemoteException ex) {
+                Logger.getLogger(ProductPanel.class.getName()).log(Level.SEVERE, null, ex);
+            }
     }//GEN-LAST:event_enterButtonActionPerformed
 
 
@@ -115,4 +126,10 @@ public class ProductPanel extends javax.swing.JPanel {
 
     //TitledBorder product;
     //product = BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.black), "Product", TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.CENTER);
+
+    public void populateUpc(List<ProductSpecification> allProducts) throws RemoteException {
+        upcComboBox.removeAllItems();
+        for (ProductSpecification ps : allProducts)
+            upcComboBox.addItem(ps.getUpc());
+    }
 }

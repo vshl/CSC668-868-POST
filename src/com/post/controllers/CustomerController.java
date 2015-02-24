@@ -19,5 +19,9 @@ public class CustomerController {
         this.mediator = med;
         this.panel = customerPanel;
     }
+
+    String getCustName() {
+        return panel.getCustName();
+    }
     
 }

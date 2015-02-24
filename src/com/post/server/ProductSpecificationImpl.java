@@ -43,7 +43,7 @@ public class ProductSpecificationImpl implements ProductSpecification,Serializab
     }
 
     @Override
-    public String Description() throws RemoteException {
+    public String getDescription() throws RemoteException {
         return this.description;
     }
 

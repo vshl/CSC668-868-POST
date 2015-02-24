@@ -20,4 +20,6 @@ public interface Payment extends Remote {
     double getAmount() throws RemoteException;
     
     String getCardNumber() throws RemoteException;
+    
+    
 }

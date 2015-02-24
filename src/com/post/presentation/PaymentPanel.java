@@ -6,6 +6,9 @@
 package com.post.presentation;
 
 import com.post.controllers.PaymentController;
+import com.post.transport.rmi.PaymentType;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -91,7 +94,11 @@ public class PaymentPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void payButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_payButtonActionPerformed
-        // TODO add your handling code here:
+            try {
+                controller.payButtonPressed(paymentTypeComboBox.getSelectedItem(),amountTextField.getText());
+            } catch (Exception ex) {
+                Logger.getLogger(PaymentPanel.class.getName()).log(Level.SEVERE, null, ex);
+            }
     }//GEN-LAST:event_payButtonActionPerformed
 
 
@@ -102,4 +109,15 @@ public class PaymentPanel extends javax.swing.JPanel {
     private javax.swing.JComboBox paymentTypeComboBox;
     private javax.swing.JLabel paymentTypeLabel;
     // End of variables declaration//GEN-END:variables
+
+    public void initPaymentTypes(PaymentType[] values) {
+        paymentTypeComboBox.removeAllItems();
+        for(PaymentType pt : values)
+            paymentTypeComboBox.addItem(pt);
+    }
+    
+    public void displayCreditCardNumberInput()
+    {
+        // TODO  when the user selectes CREDIT option, display box for CREDIT CARD #
+    }        
 }

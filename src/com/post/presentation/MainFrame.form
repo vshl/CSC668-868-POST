@@ -34,7 +34,9 @@
                       <Component id="productPanel" pref="384" max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Component id="datePanel2" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="paymentPanel" min="-2" pref="381" max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -51,10 +53,15 @@
                   <Component id="productPanel" max="32767" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="invoicePanel" pref="423" max="32767" attributes="0"/>
+              <Component id="invoicePanel" pref="399" max="32767" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="paymentPanel" min="-2" pref="137" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <Component id="paymentPanel" min="-2" pref="137" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
+                  </Group>
+                  <Component id="datePanel2" alignment="1" min="-2" max="-2" attributes="0"/>
+              </Group>
           </Group>
       </Group>
     </DimensionLayout>
@@ -67,6 +74,8 @@
     <Component class="com.post.presentation.InvoicePanel" name="invoicePanel">
     </Component>
     <Component class="com.post.presentation.PaymentPanel" name="paymentPanel">
+    </Component>
+    <Component class="com.post.presentation.DatePanel" name="datePanel2">
     </Component>
   </SubComponents>
 </Form>

@@ -20,6 +20,7 @@ public class CashPayment implements Payment{
     @Override
     public PaymentType getPaymentType() throws RemoteException {
         return PaymentType.CASH;
+        
     }
 
     @Override

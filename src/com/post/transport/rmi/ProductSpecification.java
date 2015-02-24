@@ -20,6 +20,6 @@ public interface ProductSpecification extends Remote {
     
     double getPrice() throws RemoteException;
     
-    String Description() throws RemoteException;
+    String getDescription() throws RemoteException;
 
 }

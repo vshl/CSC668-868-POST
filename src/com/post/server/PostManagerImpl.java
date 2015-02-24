@@ -25,7 +25,7 @@ import java.util.UUID;
  *
  * @author kumari
  */
-public class PostManagerImpl extends UnicastRemoteObject implements PostManager,Serializable {
+public class PostManagerImpl extends UnicastRemoteObject implements PostManager {
     // this productStore stores product of model class
     private ProductStore productStore;
     

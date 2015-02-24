@@ -69,7 +69,7 @@ public class CustomerPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void customerNameInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_customerNameInputActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_customerNameInputActionPerformed
 
 
@@ -77,4 +77,8 @@ public class CustomerPanel extends javax.swing.JPanel {
     private javax.swing.JTextField customerNameInput;
     private javax.swing.JLabel customerNameLabel;
     // End of variables declaration//GEN-END:variables
+
+    public String getCustName() {
+        return customerNameInput.getText();
+    }
 }

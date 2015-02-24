@@ -5,6 +5,7 @@
 package com.post.controllers;
 
 import com.post.presentation.ProductPanel;
+import java.rmi.RemoteException;
 import javax.swing.JPanel;
 
 /**
@@ -18,6 +19,10 @@ public class ProductController {
     ProductController(FrameController med, ProductPanel productPanel) {
         this.mediator = med;
         this.panel = productPanel;
+    }
+
+    public void addLineItem(String upc, Integer quantity) throws RemoteException {
+        mediator.addLineItem(upc,quantity);
     }
     
 }

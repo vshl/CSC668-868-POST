@@ -7,6 +7,7 @@ import java.rmi.RemoteException;
 public class CreditPayment implements Payment {
     double amount;
     String cardNumber;
+    boolean authorized;
 
     public CreditPayment(double amount, String cardNumber) {
         this.amount = amount;

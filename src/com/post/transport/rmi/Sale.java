@@ -22,4 +22,8 @@ public interface Sale extends Remote {
     String getCustomerName() throws RemoteException;
     
     double getTotalAmount() throws RemoteException;
+    
+    void addLineItem(SaleLineItem li);
+    
+    void makePayment(Payment payment);
 }

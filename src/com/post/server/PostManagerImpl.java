@@ -10,6 +10,7 @@ import com.post.server.store.ProductStoreHashImpl;
 import com.post.transport.rmi.Catalog;
 import com.post.transport.rmi.Invoice;
 import com.post.transport.rmi.Payment;
+import com.post.transport.rmi.PaymentType;
 import com.post.transport.rmi.PostManager;
 import com.post.transport.rmi.ProductSpecification;
 import com.post.transport.rmi.Sale;
@@ -25,7 +26,7 @@ import java.util.UUID;
  *
  * @author kumari
  */
-public class PostManagerImpl extends UnicastRemoteObject implements PostManager,Serializable {
+public class PostManagerImpl extends UnicastRemoteObject implements PostManager, Serializable {
     // this productStore stores product of model class
     private ProductStore productStore;
     
@@ -64,12 +65,15 @@ public class PostManagerImpl extends UnicastRemoteObject implements PostManager,
 
     @Override
     public boolean isAuthorized(Payment payment) throws RemoteException {
-        if(Math.random() > 0.1) {
-        //Authorize the request
-            return true;
-        } else {
-           return false;
+        
+        if(payment.getPaymentType().equals(PaymentType.CREDIT) 
+                && Math.random() <= 0.1){
+            // Decline the payment request if the payment type is credit card
+            // and it falls in 10% bucket.
+            return false;
         }
+        
+        return true;
     }
 
     @Override

@@ -13,7 +13,7 @@ import java.rmi.RemoteException;
  *  Holds information about the given product.
  * @author ryaneshleman
  */
-public class ProductSpecificationImpl implements ProductSpecification,Serializable{
+public class ProductSpecificationImpl implements ProductSpecification, Serializable{
     private String upc;
     private String description;
     private double price;
@@ -31,7 +31,6 @@ public class ProductSpecificationImpl implements ProductSpecification,Serializab
         this.description = description;
     }
     
-
     @Override
     public String getUpc() throws RemoteException {
         return this.upc;

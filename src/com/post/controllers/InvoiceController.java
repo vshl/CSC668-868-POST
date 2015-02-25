@@ -8,6 +8,7 @@ import com.post.presentation.InvoicePanel;
 import com.post.transport.rmi.Sale;
 import com.post.transport.rmi.SaleLineItem;
 import java.rmi.RemoteException;
+import java.text.DecimalFormat;
 
 /**
  *
@@ -25,7 +26,7 @@ public class InvoiceController {
 
     void addLineItem(SaleLineItem lineItem) throws RemoteException {
         double price = lineItem.getProduct().getPrice();
-        double extendedPrice = lineItem.getSubTotal();
+        double extendedPrice = formatDouble(lineItem.getSubTotal());
         String[] row = { lineItem.getProduct().getDescription(), Integer.toString(lineItem.getItemCount()),
             Double.toString(price), Double.toString(extendedPrice)
         };
@@ -56,9 +57,9 @@ public class InvoiceController {
         }
             
         
-        panel.writeToTextArea("Amount Due: " + amountDue + "\n");
+        panel.writeToTextArea("Amount Due: " + formatDouble(amountDue) + "\n");
         panel.writeToTextArea(paymentTypeOutput+"\n");
-        panel.writeToTextArea("Amount Returned: " + amountReturned+"\n");
+        panel.writeToTextArea("Amount Returned: " + formatDouble(amountReturned) +"\n");
         panel.writeToTextArea("Thank you for shopping " + currentSale.getCustomerName()+"!\n");
     }
     
@@ -72,4 +73,10 @@ public class InvoiceController {
         panel.resetInvoice();
     }        
     
+    // helper method to format double
+    double formatDouble(double value)
+    {
+        DecimalFormat df = new DecimalFormat("#.00");
+        return Double.valueOf(df.format(value));
+    }
 }

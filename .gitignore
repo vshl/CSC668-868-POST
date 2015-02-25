@@ -5,3 +5,5 @@ manifest.mf
 bin/
 dist/
 *.class
+# Logging file
+sales_log.txt

@@ -23,3 +23,5 @@ usage:
   2.  find the one that looks something like this: ```28304 ttys000    0:00.88 /usr/bin/rmiregistry -J-Djava.security.policy=com/post/registry/permission.policy```
   3.  in this case, process ID = 28304
   4.  kill process with ```kill 28304````
+
+*  If you get any ```class not found ``` exceptions, you need to recompile the source with javac [what ever class is not found]

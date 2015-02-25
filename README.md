@@ -16,3 +16,10 @@ usage:
   1.  set VM options:  -Djava.security.policy=com/post/presentation/permission.policy
   2.  set working directory to src/    
   2.  run MainFrame class
+
+* to test new server-side code, you have to tear down the rmiregistry, recompile server code, restart rmiregistry and register remote object again
+* to kill rmiregistry
+  1.  issue command: ```ps```    [this will list user processes]
+  2.  find the one that looks something like this: ```28304 ttys000    0:00.88 /usr/bin/rmiregistry -J-Djava.security.policy=com/post/registry/permission.policy```
+  3.  in this case, process ID = 28304
+  4.  kill process with ```kill 28304````

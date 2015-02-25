@@ -124,5 +124,9 @@ public class InvoicePanel extends javax.swing.JPanel {
 	public double getTotal() {
 		return Double.parseDouble(totalPriceLabel.getText());
 	}
+
+    public void setTotal(String string) {
+        totalPriceLabel.setText(string);
+    }
     
 }

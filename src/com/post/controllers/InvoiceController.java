@@ -22,6 +22,7 @@ public class InvoiceController {
     InvoiceController(FrameController med,InvoicePanel invoicePanel) {
         this.mediator = med;
         this.panel = invoicePanel;
+        this.panel.setTotal("0");
     }
 
     void addLineItem(SaleLineItem lineItem) throws RemoteException {
@@ -32,7 +33,7 @@ public class InvoiceController {
                                                                       price,
                                                                       extendedPrice);
         panel.writeToTextArea(str);
-		panel.updateTotal(extendedPrice);
+        panel.updateTotal(extendedPrice);
     }
 
     void printSaleDetails(Sale currentSale) throws RemoteException, Exception {

@@ -6,6 +6,11 @@
 package com.post.presentation;
 
 import com.post.controllers.DateController;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.Calendar;
+import java.util.Locale;
+import javax.swing.Timer;
 
 /**
  *
@@ -18,6 +23,19 @@ public class DatePanel extends javax.swing.JPanel {
      */
     public DatePanel() {
         initComponents();
+		new Timer(1000, new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            Calendar now = Calendar.getInstance();
+            dateLabel.setText(now.getDisplayName(Calendar.DAY_OF_WEEK, Calendar.LONG, Locale.getDefault())
+								+ ", " + now.getDisplayName(Calendar.MONTH, Calendar.LONG, Locale.getDefault())
+								+ " " + now.get(Calendar.DAY_OF_MONTH)
+								+ " " + now.get(Calendar.YEAR)
+								+ " " + now.get(Calendar.HOUR_OF_DAY)
+								+ ":" + now.get(Calendar.MINUTE)
+								+ ":" + now.get(Calendar.SECOND));
+        }
+    }).start();
     }
 
     /**
@@ -29,9 +47,9 @@ public class DatePanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
+        dateLabel = new javax.swing.JLabel();
 
-        jLabel1.setText("Date");
+        dateLabel.setText("Date");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -39,21 +57,21 @@ public class DatePanel extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(27, Short.MAX_VALUE)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 367, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(dateLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 367, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(45, Short.MAX_VALUE)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(dateLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(60, 60, 60))
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel dateLabel;
     // End of variables declaration//GEN-END:variables
 
     public void registerController(DateController dc)

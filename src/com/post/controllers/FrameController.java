@@ -16,6 +16,7 @@ import com.post.transport.rmi.PaymentType;
 import com.post.transport.rmi.PostManager;
 import com.post.transport.rmi.ProductSpecification;
 import com.post.transport.rmi.SaleLineItem;
+import static java.lang.Thread.sleep;
 import java.rmi.RemoteException;
 import javax.swing.JPanel;
 
@@ -80,8 +81,7 @@ public class FrameController {
         //post.getCurrentSale().setCustomerName(custName);
         post.makePayment(payment);
         invoiceController.printSaleDetails(post.getCurrentSale());
-        
-        
+        invoiceController.resetInvoice();
     }
     
     double getTotal() {

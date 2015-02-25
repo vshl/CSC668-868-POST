@@ -138,6 +138,14 @@ public class InvoicePanel extends javax.swing.JPanel {
     {
         totalPriceLabel.setText(string);
     }
+    
+    public void resetInvoice()
+    {
+        invoiceTextArea.setText("");
+        DefaultTableModel tbl = (DefaultTableModel) invoiceTable.getModel();
+        for(int i = 0; i > tbl.getRowCount(); i++)
+            tbl.removeRow(i);
+    }        
 
     
 }

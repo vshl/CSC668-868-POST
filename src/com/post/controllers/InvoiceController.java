@@ -60,9 +60,14 @@ public class InvoiceController {
         panel.writeToTextArea("Amount Returned: " + amountReturned+"\n");
     }
     
-    double getTotal()
+    public double getTotal()
     {
         return panel.getTotal();
     }
+    
+    public void resetInvoice()
+    {
+        panel.resetInvoice();
+    }        
     
 }

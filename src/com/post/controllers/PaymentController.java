@@ -41,7 +41,8 @@ public class PaymentController {
                 break;
             case CREDIT:
                 
-                throw new Exception("Havent implemented this yet!");
+                payment = new CreditPayment(0,text);
+                break;
                 
             case CHECK:
                 payment = new CheckPayment(amount);

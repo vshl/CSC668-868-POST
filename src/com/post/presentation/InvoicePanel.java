@@ -124,10 +124,20 @@ public class InvoicePanel extends javax.swing.JPanel {
         invoiceTextArea.append(str);
     }
     
-    public void updateTotal(String str)
+    public void updateTotal(double increment)
     {
-    // TODO update invoice panel total
-    }        
+        double total = Double.parseDouble(totalPriceLabel.getText()) + increment;
+    }     
+    
+    public double getTotal()
+    {
+        return Double.parseDouble(totalPriceLabel.getText());
+    }
+    
+    public void setTotal(String string)
+    {
+        totalPriceLabel.setText(string);
+    }
 
     
 }

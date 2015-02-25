@@ -20,6 +20,7 @@ public class InvoiceController {
     InvoiceController(FrameController med,InvoicePanel invoicePanel) {
         this.mediator = med;
         this.panel = invoicePanel;
+        this.panel.setTotal("0");
     }
 
     void addLineItem(SaleLineItem lineItem) throws RemoteException {
@@ -56,6 +57,11 @@ public class InvoiceController {
         panel.writeToTextArea("Amount Due: " + amountDue + "\n");
         panel.writeToTextArea(paymentTypeOutput+"\n");
         panel.writeToTextArea("Amount Returned: " + amountReturned+"\n");
+    }
+    
+    double getTotal()
+    {
+        return panel.getTotal();
     }
     
 }

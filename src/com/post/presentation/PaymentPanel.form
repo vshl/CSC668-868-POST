@@ -80,7 +80,8 @@
     </Component>
     <Component class="javax.swing.JTextField" name="amountTextField">
       <Properties>
-        <Property name="text" type="java.lang.String" value="jTextField1"/>
+        <Property name="columns" type="int" value="8"/>
+        <Property name="text" type="java.lang.String" value="0"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="payButton">

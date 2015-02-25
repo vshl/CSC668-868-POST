@@ -48,7 +48,8 @@ public class PaymentPanel extends javax.swing.JPanel {
 
         amountLabel.setText("Amount");
 
-        amountTextField.setText("jTextField1");
+        amountTextField.setColumns(8);
+        amountTextField.setText("0");
 
         payButton.setText("PAY");
         payButton.addActionListener(new java.awt.event.ActionListener() {

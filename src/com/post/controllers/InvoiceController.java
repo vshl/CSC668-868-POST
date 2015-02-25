@@ -32,6 +32,7 @@ public class InvoiceController {
                                                                       price,
                                                                       extendedPrice);
         panel.writeToTextArea(str);
+		panel.updateTotal(extendedPrice);
     }
 
     void printSaleDetails(Sale currentSale) throws RemoteException, Exception {
@@ -62,4 +63,7 @@ public class InvoiceController {
         panel.writeToTextArea("Amount Returned: " + amountReturned+"\n");
     }
     
+	double getTotal() {
+		return panel.getTotal();
+	}
 }

@@ -83,12 +83,14 @@ public class FrameController {
         
         
         String custName = customerController.getCustName();
-        //post.getCurrentSale().setCustomerName(custName);
+        post.getCurrentSale().setCustomerName(custName);
+        //post.getCurrentSale().
         post.makePayment(payment);
         invoiceController.printSaleDetails(post.getCurrentSale());
-        
-        
+
         timer.schedule(new Tasker(),3000);
+        post.initiateSale();
+        
         
     }
     

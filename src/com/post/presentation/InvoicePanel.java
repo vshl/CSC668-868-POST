@@ -148,6 +148,7 @@ public class InvoicePanel extends javax.swing.JPanel {
         int numRows = tbl.getRowCount();
         for(int i = 0; i < numRows; i++)
             tbl.removeRow(0);
+        setTotal("0");
         
     }        
 

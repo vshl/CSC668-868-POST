@@ -49,6 +49,7 @@ public class InvoiceController {
                 break;
             case CHECK:
                 paymentTypeOutput = "Paid by Check";
+                break;
             default :
                 throw new Exception("Problem with printing invoice details");
         
@@ -58,6 +59,7 @@ public class InvoiceController {
         panel.writeToTextArea("Amount Due: " + amountDue + "\n");
         panel.writeToTextArea(paymentTypeOutput+"\n");
         panel.writeToTextArea("Amount Returned: " + amountReturned+"\n");
+        panel.writeToTextArea("Thank you for shopping " + currentSale.getCustomerName()+"!\n");
     }
     
     public double getTotal()

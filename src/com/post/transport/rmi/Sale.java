@@ -27,5 +27,7 @@ public interface Sale extends Remote {
     
     void makePayment(Payment payment);
 
+    public void setCustomerName(String custName);
+
 
 }

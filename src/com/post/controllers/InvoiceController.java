@@ -28,10 +28,6 @@ public class InvoiceController {
         String[] row = { lineItem.getProduct().getDescription(), Integer.toString(lineItem.getItemCount()),
             Double.toString(price), Double.toString(extendedPrice)
         };
-//        String str = String.format("%-120s %-10d  %-10.2f  %-10.2f\n",lineItem.getProduct().getDescription(),
-//                                                                      lineItem.getItemCount(),
-//                                                                      price,
-//                                                                      extendedPrice);
         panel.writeToTable(row);
     }
 

@@ -127,6 +127,7 @@ public class InvoicePanel extends javax.swing.JPanel {
     public void updateTotal(double increment)
     {
         double total = Double.parseDouble(totalPriceLabel.getText()) + increment;
+		this.setTotal("" + total);
     }     
     
     public double getTotal()

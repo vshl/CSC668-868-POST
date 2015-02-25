@@ -84,6 +84,7 @@ public class LogSaleImpl implements LogSale {
                     sale.getPayment().getCardNumber()));
         }
         sb.append("\n");
+        sb.append("----------------------------------------------------------\n");
         return sb.toString();
     }
 }

@@ -8,6 +8,7 @@ package com.post.client;
 import com.post.transport.rmi.Payment;
 import com.post.transport.rmi.Sale;
 import com.post.transport.rmi.SaleLineItem;
+import java.io.Serializable;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.List;
@@ -16,7 +17,7 @@ import java.util.List;
  *
  * @author kumari
  */
-public class SaleImpl implements Sale {
+public class SaleImpl implements Sale, Serializable {
     private  String customerName;
     private  List<SaleLineItem> saleLineItems;
     private  Payment payment;
@@ -77,4 +78,8 @@ public class SaleImpl implements Sale {
     {
         this.payment = payment;
     }        
+
+    public void setCustomerName(String custName) {
+        this.customerName = custName;
+    }
 }

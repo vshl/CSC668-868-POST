@@ -26,4 +26,6 @@ public interface Sale extends Remote {
     void addLineItem(SaleLineItem li);
     
     void makePayment(Payment payment);
+
+
 }

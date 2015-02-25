@@ -7,13 +7,14 @@ package com.post.client;
 
 import com.post.transport.rmi.ProductSpecification;
 import com.post.transport.rmi.SaleLineItem;
+import java.io.Serializable;
 import java.rmi.RemoteException;
 
 /**
  *
  * @author kumari
  */
-public class SaleLineItemImpl implements SaleLineItem {
+public class SaleLineItemImpl implements SaleLineItem,Serializable {
     private final ProductSpecification product;
     private final int itemCount;
     

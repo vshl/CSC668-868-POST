@@ -2,9 +2,10 @@ package com.post.client;
 
 import com.post.transport.rmi.Payment;
 import com.post.transport.rmi.PaymentType;
+import java.io.Serializable;
 import java.rmi.RemoteException;
 
-public class CheckPayment implements Payment {
+public class CheckPayment implements Payment,Serializable {
     double amount;
 
     public CheckPayment(double amount) {

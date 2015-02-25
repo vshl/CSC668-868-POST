@@ -2,9 +2,10 @@ package com.post.client;
 
 import com.post.transport.rmi.Payment;
 import com.post.transport.rmi.PaymentType;
+import java.io.Serializable;
 import java.rmi.RemoteException;
 
-public class CreditPayment implements Payment {
+public class CreditPayment implements Payment,Serializable {
     double amount;
     String cardNumber;
     boolean authorized;

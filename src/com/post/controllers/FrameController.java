@@ -77,8 +77,10 @@ public class FrameController {
 
     void submitPayment(Payment payment) throws Exception {
         String custName = customerController.getCustName();
+        //post.getCurrentSale().setCustomerName(custName);
         post.makePayment(payment);
         invoiceController.printSaleDetails(post.getCurrentSale());
+        
         
     }
     

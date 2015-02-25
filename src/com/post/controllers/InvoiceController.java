@@ -62,6 +62,7 @@ public class InvoiceController {
         panel.writeToTextArea("Amount Due: " + amountDue + "\n");
         panel.writeToTextArea(paymentTypeOutput+"\n");
         panel.writeToTextArea("Amount Returned: " + amountReturned+"\n");
+        panel.writeToTextArea("\nThank you for shopping "+ currentSale.getCustomerName()+"!\n");
     }
     
 	double getTotal() {

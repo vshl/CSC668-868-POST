@@ -2,6 +2,7 @@ package com.post.client;
 
 import com.post.transport.rmi.Payment;
 import com.post.transport.rmi.PaymentType;
+import java.io.Serializable;
 import java.rmi.RemoteException;
 
 /*
@@ -10,7 +11,7 @@ import java.rmi.RemoteException;
  * and open the template in the editor
  */
 
-public class CashPayment implements Payment{
+public class CashPayment implements Payment, Serializable{
     private double amount;
 
     public CashPayment(double amount) {

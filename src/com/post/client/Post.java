@@ -27,7 +27,7 @@ public class Post {
     private final static String PRODUCT_SPEC_FILE = "./products.txt";
     private final static String TRANSACTIONS_FILE = "./transactions.txt";
     private        Catalog catalog;
-    private Sale currentSale;
+    private SaleImpl currentSale;
 
     /**
      * @return the catalog
@@ -127,7 +127,7 @@ public class Post {
     
     public void initiateSale() throws RemoteException
     {
-        Sale s = new SaleImpl();
+        SaleImpl s = new SaleImpl();
         //s.initiateSale(custName);
         this.currentSale = s;
     }
@@ -144,6 +144,7 @@ public class Post {
     public void makePayment(Payment payment) throws Exception
     {
         this.currentSale.makePayment(payment);
+        this.store.saveSale(currentSale);
             
     }        
     
@@ -171,4 +172,6 @@ public class Post {
     public Sale getCurrentSale() {
         return currentSale;
     }
+    
+            
 }

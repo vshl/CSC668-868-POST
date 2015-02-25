@@ -59,6 +59,8 @@ public class ProductPanel extends javax.swing.JPanel {
 
         quantityLabel.setText("Quantity");
 
+        quantitySpinner.setModel(new javax.swing.SpinnerNumberModel(Integer.valueOf(1), Integer.valueOf(1), null, Integer.valueOf(1)));
+
         enterButton.setText("ENTER");
         enterButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

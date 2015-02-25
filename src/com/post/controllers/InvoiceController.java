@@ -5,11 +5,9 @@
 package com.post.controllers;
 
 import com.post.presentation.InvoicePanel;
-import com.post.transport.rmi.ProductSpecification;
 import com.post.transport.rmi.Sale;
 import com.post.transport.rmi.SaleLineItem;
 import java.rmi.RemoteException;
-import javax.swing.JPanel;
 
 /**
  *
@@ -27,11 +25,14 @@ public class InvoiceController {
     void addLineItem(SaleLineItem lineItem) throws RemoteException {
         double price = lineItem.getProduct().getPrice();
         double extendedPrice = lineItem.getSubTotal();
-        String str = String.format("%-120s %-10d  %-10.2f  %-10.2f\n",lineItem.getProduct().getDescription(),
-                                                                      lineItem.getItemCount(),
-                                                                      price,
-                                                                      extendedPrice);
-        panel.writeToTextArea(str);
+        String[] row = { lineItem.getProduct().getDescription(), Integer.toString(lineItem.getItemCount()),
+            Double.toString(price), Double.toString(extendedPrice)
+        };
+//        String str = String.format("%-120s %-10d  %-10.2f  %-10.2f\n",lineItem.getProduct().getDescription(),
+//                                                                      lineItem.getItemCount(),
+//                                                                      price,
+//                                                                      extendedPrice);
+        panel.writeToTable(row);
     }
 
     void printSaleDetails(Sale currentSale) throws RemoteException, Exception {
@@ -56,7 +57,6 @@ public class InvoiceController {
         }
             
         
-        panel.writeToTextArea("**********************\n");
         panel.writeToTextArea("Amount Due: " + amountDue + "\n");
         panel.writeToTextArea(paymentTypeOutput+"\n");
         panel.writeToTextArea("Amount Returned: " + amountReturned+"\n");

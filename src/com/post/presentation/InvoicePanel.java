@@ -6,6 +6,7 @@
 package com.post.presentation;
 
 import com.post.controllers.InvoiceController;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -34,28 +35,37 @@ public class InvoicePanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        itemLabel = new javax.swing.JLabel();
-        quantityLabel = new javax.swing.JLabel();
-        unitPriceLabel = new javax.swing.JLabel();
-        extendedPriceLabel = new javax.swing.JLabel();
-        invoiceSceollPane = new javax.swing.JScrollPane();
-        invoiceTextArea = new javax.swing.JTextArea();
         totalLabel = new javax.swing.JLabel();
         totalPriceLabel = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        invoiceTable = new javax.swing.JTable();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        invoiceTextArea = new javax.swing.JTextArea();
 
-        itemLabel.setText("ITEM");
+        totalLabel.setText("TOTAL");
 
-        quantityLabel.setText("QTY");
+        invoiceTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
 
-        unitPriceLabel.setText("UNIT_PRICE");
+            },
+            new String [] {
+                "ITEM", "QTY", "UNIT_PRICE", "EXTENDED_PRICE"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
 
-        extendedPriceLabel.setText("EXTENDED_PRICE");
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        invoiceTable.getTableHeader().setReorderingAllowed(false);
+        jScrollPane1.setViewportView(invoiceTable);
 
         invoiceTextArea.setColumns(20);
         invoiceTextArea.setRows(5);
-        invoiceSceollPane.setViewportView(invoiceTextArea);
-
-        totalLabel.setText("TOTAL");
+        jScrollPane2.setViewportView(invoiceTextArea);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -64,53 +74,52 @@ public class InvoicePanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(invoiceSceollPane)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(itemLabel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 179, Short.MAX_VALUE)
-                        .addComponent(quantityLabel)
-                        .addGap(18, 18, 18)
-                        .addComponent(unitPriceLabel)
-                        .addGap(18, 18, 18)
-                        .addComponent(extendedPriceLabel))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 454, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(totalLabel)
                         .addGap(84, 84, 84)
                         .addComponent(totalPriceLabel)))
                 .addContainerGap())
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(jScrollPane1)
+                    .addContainerGap()))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(itemLabel)
-                    .addComponent(quantityLabel)
-                    .addComponent(unitPriceLabel)
-                    .addComponent(extendedPriceLabel))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(invoiceSceollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 343, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(248, 248, 248)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(45, 45, 45)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(totalLabel)
                     .addComponent(totalPriceLabel))
-                .addContainerGap(23, Short.MAX_VALUE))
+                .addContainerGap(39, Short.MAX_VALUE))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 242, Short.MAX_VALUE)
+                    .addGap(184, 184, 184)))
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel extendedPriceLabel;
-    private javax.swing.JScrollPane invoiceSceollPane;
+    private javax.swing.JTable invoiceTable;
     private javax.swing.JTextArea invoiceTextArea;
-    private javax.swing.JLabel itemLabel;
-    private javax.swing.JLabel quantityLabel;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel totalLabel;
     private javax.swing.JLabel totalPriceLabel;
-    private javax.swing.JLabel unitPriceLabel;
     // End of variables declaration//GEN-END:variables
 
+    public void writeToTable(String row[]) {
+        DefaultTableModel tbl = (DefaultTableModel) invoiceTable.getModel();
+        tbl.addRow(row);
+    }
+    
     public void writeToTextArea(String str) {
         invoiceTextArea.append(str);
     }

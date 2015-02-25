@@ -142,10 +142,13 @@ public class InvoicePanel extends javax.swing.JPanel {
     
     public void resetInvoice()
     {
+        
         invoiceTextArea.setText("");
         DefaultTableModel tbl = (DefaultTableModel) invoiceTable.getModel();
-        for(int i = 0; i > tbl.getRowCount(); i++)
-            tbl.removeRow(i);
+        int numRows = tbl.getRowCount();
+        for(int i = 0; i < numRows; i++)
+            tbl.removeRow(0);
+        
     }        
 
     

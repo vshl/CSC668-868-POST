@@ -19,6 +19,8 @@ import com.post.transport.rmi.SaleLineItem;
 import static java.lang.Thread.sleep;
 import java.rmi.RemoteException;
 import javax.swing.JPanel;
+import java.util.Timer;
+import java.util.TimerTask;
 
 /**
  *
@@ -77,15 +79,31 @@ public class FrameController {
     }
 
     void submitPayment(Payment payment) throws Exception {
+        Timer timer = new Timer();
+        
+        
         String custName = customerController.getCustName();
         //post.getCurrentSale().setCustomerName(custName);
         post.makePayment(payment);
         invoiceController.printSaleDetails(post.getCurrentSale());
-        invoiceController.resetInvoice();
+        
+        
+        timer.schedule(new Tasker(),3000);
+        
     }
     
     double getTotal() {
 		return invoiceController.getTotal();
 	}
+    
+    class Tasker extends TimerTask {
+    @Override
+    public void run() {
+        invoiceController.resetInvoice(); // For example take cards 
+    }
+
+    // More functions if they are needed
+}
+    
     
 }

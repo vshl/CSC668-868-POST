@@ -4,6 +4,7 @@ package com.post.client;
 
 import com.post.transport.rmi.ProductSpecification;
 import com.post.transport.rmi.SaleLineItem;
+import java.io.Serializable;
 import java.rmi.RemoteException;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -14,7 +15,7 @@ import java.util.List;
  *
  * @author ryaneshleman
  */
-public class Sale {
+public class Sale implements Serializable {
     private String custName;
     private String payType;
     private double  amountDue = 0;

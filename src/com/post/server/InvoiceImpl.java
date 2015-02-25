@@ -7,13 +7,14 @@ package com.post.server;
 
 import com.post.transport.rmi.Invoice;
 import com.post.transport.rmi.Sale;
+import java.io.Serializable;
 import java.rmi.RemoteException;
 
 /**
  *
  * @author kumari
  */
-public class InvoiceImpl implements Invoice {
+public class InvoiceImpl implements Invoice, Serializable {
     private String id;
     private Sale sale;
     

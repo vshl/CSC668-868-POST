@@ -55,4 +55,15 @@ public class PaymentController {
         mediator.submitPayment(payment);
     }
     
+	public void payTypeChanged(Object payment) {
+		PaymentType type = (PaymentType) payment;
+		switch(type) {
+			case CREDIT:
+				panel.setPaymentLabel("Card number:");
+				break;
+			default:
+				panel.setPaymentLabel("Amount:");
+		}
+	}
+	
 }

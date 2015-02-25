@@ -30,6 +30,7 @@ public class InvoiceController {
             Double.toString(price), Double.toString(extendedPrice)
         };
         panel.writeToTable(row);
+        panel.updateTotal(extendedPrice);
     }
 
     void printSaleDetails(Sale currentSale) throws RemoteException, Exception {
